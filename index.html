@@ -3,12 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title> Максим 
-    & 
-    Ангелина</title>
+  <title>Максим & Ангелина</title>
 
-
-  <!-- Шрифты как в "премиум" приглашениях -->
+  <!-- Шрифты -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -18,45 +15,9 @@
       --bg:#0b0b0e;
       --text:#e9e6df;
       --sage:#cfd7c4;
-      --wave: rgba(255,255,255,.10);
-      --wave2: rgba(255,255,255,.07);
     }
-    @media (max-width: 840px){
-  .names{
-    width: 100%;
-    text-align: center;
-    margin: 24px auto 8px;
-  }
 
-  .names .line{
-    display: block;         /* каждая часть на своей строке */
-    width: 100%;
-    text-align: center;     /* строго по центру */
-  }
-
-  .names .amp{
-    margin: 10px 0;
-  }
-      .amp{
-  display:inline-block;
-  font-size:0.6em;     /* меньше чем имена */
-  font-weight:300;     /* тоньше */
-  opacity:0.9;         /* чуть мягче */
-  margin:0 0.2em;      /* расстояние вокруг */
-  transform: translateY(-0.05em); /* чуть выше, красиво */
-}
-
-}
-
-   @media (max-width: 840px){
-  h1{
-    width: 100% !important;
-    text-align: center !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-}
-
+    *{ box-sizing:border-box; }
     html,body{ height:100%; }
 
     body{
@@ -67,78 +28,45 @@
       overflow-x:hidden;
     }
 
-    /* ВОЛНЫ КАК НА РЕФЕРЕНСЕ (светлые линии на тёмном) */
+    /* Волны (оригинальный узор, без картинок) */
     body::before{
-  content:"";
-  position:fixed;
-  inset:-80px;
-  pointer-events:none;
-  opacity:1;
+      content:"";
+      position:fixed;
+      inset:-80px;
+      pointer-events:none;
+      opacity:1;
+      background:
+        radial-gradient(1200px 800px at 18% 20%, rgba(255,255,255,.06), transparent 62%),
+        radial-gradient(1000px 700px at 82% 30%, rgba(255,255,255,.05), transparent 60%),
+        radial-gradient(1100px 900px at 50% 95%, rgba(255,255,255,.04), transparent 60%),
 
-  /* ОРИГИНАЛЬНЫЕ ВОЛНЫ: две независимые "сетки" контуров,
-     мягкая подсветка и лёгкий шум через градиенты (без картинок). */
-  background:
-    /* мягкая подсветка */
-    radial-gradient(1200px 800px at 18% 20%, rgba(255,255,255,.06), transparent 62%),
-    radial-gradient(1000px 700px at 82% 30%, rgba(255,255,255,.05), transparent 60%),
-    radial-gradient(1100px 900px at 50% 95%, rgba(255,255,255,.04), transparent 60%),
-    ),
-    body{
-  margin:0;
-  background-color:#0b0b0b;
+        /* волны #1 */
+        repeating-radial-gradient(
+          circle at 12% 28%,
+          rgba(255,255,255,.10) 0px,
+          rgba(255,255,255,.10) 1px,
+          transparent 1px,
+          transparent 64px
+        ),
 
-  /* ОРИГИНАЛЬНЫЙ узор волн (не копия референса) */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800' viewBox='0 0 1200 800'%3E%3Crect width='1200' height='800' fill='none'/%3E%3Cg fill='none' stroke='rgba(255,255,255,0.10)' stroke-width='1'%3E%3Cpath d='M-50 120 C 120 40, 260 200, 420 120 S 720 40, 900 120 S 1120 200, 1300 120'/%3E%3Cpath d='M-80 220 C 140 140, 260 320, 460 220 S 760 120, 940 220 S 1140 320, 1320 220'/%3E%3Cpath d='M-60 320 C 120 240, 280 420, 480 320 S 760 220, 960 320 S 1140 420, 1320 320'/%3E%3Cpath d='M-90 420 C 120 340, 300 520, 520 420 S 820 320, 1040 420 S 1220 520, 1400 420'/%3E%3Cpath d='M-70 520 C 140 440, 320 620, 540 520 S 840 420, 1060 520 S 1240 620, 1420 520'/%3E%3Cpath d='M-50 620 C 160 540, 340 720, 560 620 S 860 520, 1080 620 S 1260 720, 1440 620'/%3E%3C/g%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 1200px 800px;
-}
+        /* волны #2 */
+        repeating-radial-gradient(
+          circle at 86% 72%,
+          rgba(255,255,255,.07) 0px,
+          rgba(255,255,255,.07) 1px,
+          transparent 1px,
+          transparent 68px
+        ),
 
-
-    /* волны #2 (вторая система волн, другой шаг/прозрачность) */
-    repeating-radial-gradient(
-      circle at 86% 72%,
-      rgba(255,255,255,.065) 0px,
-      rgba(255,255,255,.065) 1px,
-      transparent 1px,
-      transparent 68px
-    ),
-    /* ===== ТОЛЬКО ДЛЯ ТЕЛЕФОНА ===== */
-@media (max-width: 768px) {
-
-  .names {
-    position: fixed;               /* фиксируем по экрану */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    width: 100%;
-    text-align: center;
-
-    font-size: 38px;               /* размер как в референсе */
-    line-height: 1.15;
-    letter-spacing: 0.04em;
-
-    z-index: 20;                   /* поверх слайдера */
-    pointer-events: none;          /* не мешает свайпу */
-  }
-
-}
- 
-
-    /* очень лёгкая диагональная "дымка", чтобы линии не были стерильными */
-    repeating-linear-gradient(
-      135deg,
-      rgba(255,255,255,.010) 0px,
-      rgba(255,255,255,.010) 2px,
-      transparent 2px,
-      transparent 22px
-    );
-
-  filter: blur(.15px);
-}
-
+        /* лёгкая дымка */
+        repeating-linear-gradient(
+          135deg,
+          rgba(255,255,255,.010) 0px,
+          rgba(255,255,255,.010) 2px,
+          transparent 2px,
+          transparent 22px
         );
-      filter: blur(.1px);
+      filter: blur(.15px);
     }
 
     .wrap{
@@ -167,20 +95,20 @@
 
     .ph img{
       width:100%;
-      aspect-ratio:3/4;         /* вертикальные */
+      aspect-ratio:3/4;
       object-fit:cover;
       display:block;
-    
     }
 
-    /* ===== ТЕКСТ КАК В РЕФЕРЕНСЕ ===== */
-    h1{
+    /* ===== Заголовок и дата ===== */
+    .names{
       margin:34px 0 8px;
       font-family:"Cormorant Garamond", serif;
       font-weight:300;
       font-size:76px;
       letter-spacing:.10em;
       color:var(--sage);
+      text-align:center;
     }
 
     .dateLine{
@@ -189,33 +117,15 @@
       font-size:18px;
       letter-spacing:.22em;
       color:rgba(233,230,223,.70);
+      text-align:center;
     }
 
-    /* Кнопка RSVP */
-    .rsvp{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      margin-top:18px;
-      padding:14px 22px;
-      border-radius:18px;
-      background:#ffffff;
-      color:#0b0b0e;
-      text-decoration:none;
-      font-weight:700;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      font-size:12px;
-      box-shadow:0 18px 50px rgba(0,0,0,.35);
-    }
-    .rsvp:hover{ opacity:.92; }
-
-    /* ===== МОБИЛЬНЫЙ СЛАЙДЕР (одно фото + стрелки + плавно) ===== */
+    /* ===== МОБИЛЬНЫЙ СЛАЙДЕР ===== */
     .mSlider{ display:none; }
 
     @media (max-width: 840px){
-      .grid{ display:none; }  /* на телефоне прячем 3 фото */
-      h1{ font-size:52px; }
+      .grid{ display:none; }
+      .names{ font-size:52px; }
       .dateLine{ font-size:16px; }
     }
 
@@ -239,11 +149,6 @@
         opacity:1;
       }
       .mSlider img.fade{ opacity:0; }
-
-      .mSlider .num{
-        font-size:150px;
-        bottom:-14px;
-      }
 
       /* тонкие стрелки */
       .mBtn{
@@ -279,8 +184,27 @@
         right:18px;
         transform:translateY(-50%) rotate(45deg);
       }
-
       .mBtn:active{ background:rgba(0,0,0,.10); }
+
+      /* ТОЛЬКО ДЛЯ ТЕЛЕФОНА: имена в 3 строки и & меньше/тоньше */
+      .names{
+        width:100%;
+        margin:18px auto 6px;
+        letter-spacing:.08em;
+      }
+      .names .line{
+        display:block;
+        width:100%;
+        text-align:center;
+      }
+      .names .ampSign{
+        display:block;
+        font-size:.55em;   /* меньше */
+        font-weight:300;   /* тоньше */
+        opacity:.9;
+        margin:10px 0;
+        line-height:1;
+      }
     }
   </style>
 </head>
@@ -297,48 +221,34 @@
 
     <!-- ПК: 3 фото -->
     <div class="grid">
-      <div class="ph">
-        <img src="photo1.jpg" alt="">
-        <div class="num"></div>
-      </div>
-      <div class="ph">
-        <img src="photo2.jpg" alt="">
-        <div class="num"></div>
-      </div>
-      <div class="ph">
-        <img src="photo3.jpg" alt="">
-        <div class="num"></div>
-      </div>
+      <div class="ph"><img src="photo1.jpg" alt=""></div>
+      <div class="ph"><img src="photo2.jpg" alt=""></div>
+      <div class="ph"><img src="photo3.jpg" alt=""></div>
     </div>
 
-<h1 class="names">
-  <span class="line">Максим</span>
-  <span class="line amp">&amp;</span>
-  <span class="line">Ангелина</span>
-</h1>
-<h1>Максим <span class="amp">&</span> Ангелина</h1>
+    <!-- Имена (по центру) -->
+    <h1 class="names">
+      <span class="line">Максим</span>
+      <span class="line ampSign">&amp;</span>
+      <span class="line">Ангелина</span>
+    </h1>
 
+    <!-- Дата под именами -->
+    <div class="dateLine">29 08 2026</div>
 
-    <div class="dateLine"></div>
-
-    <!-- RSVP: поменяйте ссылку на вашу -->
-    <a class="rsvp" href="https://t.me/+EYJDH7kHBDJlYTFi" target="_blank" rel="noopener">
-      ПОДТВЕРДИТЬ ПРИСУТСТВИЕ
-    </a>
-
+    <!-- RSVP УБРАНО — вы вставите позже -->
   </div>
 
   <script>
-    // Мобильный слайдер: плавно + стрелки + свайп
+    // Мобильный слайдер: плавно + стрелки + свайп (логика не менялась)
     const slides = [
-      {src:"photo1.jpg", num:"29"},
-      {src:"photo2.jpg", num:"08"},
-      {src:"photo3.jpg", num:"26"}
+      {src:"photo1.jpg"},
+      {src:"photo2.jpg"},
+      {src:"photo3.jpg"}
     ];
 
     let i = 0;
     const img = document.getElementById("mImg");
-    const num = document.getElementById("mNum");
     const left = document.querySelector(".mBtn.left");
     const right = document.querySelector(".mBtn.right");
 
@@ -349,7 +259,6 @@
       img.classList.add("fade");
       setTimeout(() => {
         img.src = slides[i].src;
-        if(num) num.textContent = slides[i].num;
         img.classList.remove("fade");
       }, 180);
     }
@@ -371,22 +280,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
