@@ -109,37 +109,62 @@
     }
 
     /* ===== ТЕКСТ ===== */
-    .names{
-      margin:34px 0 6px;
-      font-family:"Cormorant Garamond", serif;
-      font-weight:300;
-      font-size:76px;
-      letter-spacing:.10em;
-      color:var(--sage);
-      text-align:center;
-    }
+    /* Имена */
+.names{
+  margin:34px 0 8px;
+  font-family:"Cormorant Garamond", serif;
+  font-weight:300;
+  font-size:76px;
+  letter-spacing:.10em;
+  color:var(--sage);
+  text-align:center;
+}
 
-    .names .line{
-      display:inline;
-    }
+.names .line{ display:block; }
 
-    .names .amp{
-      display:inline-block;
-      font-size:0.62em;        /* меньше, чем имена */
-      font-weight:300;         /* тоньше */
-      opacity:.92;
-      margin:0 .25em;
-      transform:translateY(-.06em);
-    }
+/* знак & — меньше и тоньше */
+.names .amp{
+  font-size:0.55em;
+  font-weight:300;
+  opacity:.85;
+}
 
-    .dateLine{
-      font-family:"Cormorant Garamond", serif;
-      font-weight:300;
-      font-size:18px;
-      letter-spacing:.22em;
-      color:rgba(233,230,223,.70);
-      text-align:center;
-      margin-bottom:6px;
+/* Дата — тот же шрифт, что и имена */
+.dateLine{
+  font-family:"Cormorant Garamond", serif;
+  font-weight:300;
+  font-size:22px;
+  letter-spacing:.20em;
+  color:rgba(207,215,196,.85);
+  text-align:center;
+  margin: 10px 0 0;
+  text-decoration:none;
+}
+
+.dateLine, .dateLine a{
+  color:rgba(207,215,196,.85) !important;
+  text-decoration:none !important;
+  -webkit-text-fill-color: rgba(207,215,196,.85) !important;
+}
+
+/* ТОЛЬКО ТЕЛЕФОН: уменьшить вертикальные расстояния между строками */
+@media (max-width: 840px){
+  .names{
+    font-size:54px;
+    margin: 18px 0 6px;
+    line-height: 1.05;       /* строки ближе */
+  }
+  .names .amp{
+    margin: 2px 0;           /* было большое — делаем маленькое */
+  }
+
+  .dateLine{
+    font-size:24px;          /* дата крупнее */
+    margin-top: 8px;
+    letter-spacing:.18em;
+  }
+}
+
     }
 
     /* ===== МОБИЛЬНЫЙ СЛАЙДЕР (одно фото + стрелки + плавно) ===== */
@@ -317,6 +342,7 @@
   </script>
 </body>
 </html>
+
 
 
 
