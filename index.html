@@ -1,175 +1,322 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
+  <meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Максим & Ангелина</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg: #f4f2ed;
-      --text: #6f7568;
-
-      /* ВАЖНО: путь к фото (положите фото в repo: assets/photo.jpg) */
-      --photo-url: url("assets/photo.jpg");
-
-      --card-radius: 28px;
-      --shadow: 0 18px 40px rgba(0,0,0,.10);
-
-      /* ТЗ: меньше вертикального пространства между & и Ангелина */
-      --amp-top: 10px;
-      --amp-bottom: 2px; /* уменьшайте до 0px если нужно ещё ближе */
-
-      /* ТЗ: цифры под именами сделать ещё больше в 2 раза */
-      --date-size: clamp(76px, 12vw, 140px);  /* ОЧЕНЬ крупно */
-      --date-track: 0.22em;
+      --bg:#f6f4ef;     /* светлый фон */
+      --text:#2b2b2b;
+      --sage:#6f7b6a;   /* цвет имён и даты */
     }
 
-    * { box-sizing: border-box; }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
 
     body{
-      margin: 0;
-      min-height: 100svh;
-      display: grid;
-      place-items: center;
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Georgia", "Times New Roman", serif;
-      overflow-x: hidden;
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      overflow-x:hidden;
     }
 
-    /* если вдруг где-то попали markdown-блоки — не показываем */
-    pre, code { display:none !important; }
+    /* ====== ВОЛНЫ (много волн, без диагональных полосок) ====== */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+      opacity:1;
+      background:
+        radial-gradient(1200px 800px at 18% 18%, rgba(0,0,0,.05), transparent 60%),
+        radial-gradient(1000px 700px at 82% 28%, rgba(0,0,0,.045), transparent 62%),
+        radial-gradient(1100px 900px at 50% 95%, rgba(0,0,0,.04), transparent 62%),
+
+        repeating-radial-gradient(
+          circle at 16% 22%,
+          rgba(0,0,0,.05) 0px,
+          rgba(0,0,0,.05) 1px,
+          transparent 1px,
+          transparent 42px
+        ),
+        repeating-radial-gradient(
+          circle at 78% 26%,
+          rgba(0,0,0,.045) 0px,
+          rgba(0,0,0,.045) 1px,
+          transparent 1px,
+          transparent 52px
+        ),
+        repeating-radial-gradient(
+          circle at 55% 80%,
+          rgba(0,0,0,.04) 0px,
+          rgba(0,0,0,.04) 1px,
+          transparent 1px,
+          transparent 62px
+        );
+      filter: blur(.12px);
+    }
 
     .wrap{
-      width: min(720px, 92vw);
-      padding: 26px 18px 44px;
-      text-align: center;
-      position: relative;
+      position:relative;
+      z-index:1;
+      max-width:1100px;
+      margin:0 auto;
+      padding:28px 20px 60px;
+      text-align:center;
     }
 
-    .photo-card{
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      border-radius: var(--card-radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      background-color: #ddd;
-      background-image: var(--photo-url);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+    /* ====== ПК: 3 фото ====== */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:22px;
+      align-items:stretch;
+      margin-top:10px;
     }
 
+    .ph{
+      position:relative;
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow:0 20px 50px rgba(0,0,0,.18);
+      background: rgba(0,0,0,.06);
+    }
+
+    .ph img{
+      width:100%;
+      aspect-ratio:3/4;
+      object-fit:cover;
+      display:block;
+    }
+
+    /* ====== ЦИФРЫ НА ФОТО (только ПК) ====== */
+    .ph .num{
+      position:absolute;
+      left:50%;
+      bottom:-18px;
+      transform:translateX(-50%);
+      font-family:"Cormorant Garamond", serif;
+      font-weight:300;
+      font-size:170px;
+      letter-spacing:.02em;
+      color:rgba(43,43,43,.70);
+      text-shadow:0 18px 40px rgba(0,0,0,.12);
+      pointer-events:none;
+      user-select:none;
+    }
+
+    /* ===== ИМЕНА ===== */
     .names{
-      margin-top: 28px;
-      line-height: 1;
-      letter-spacing: 2px;
+      margin:34px 0 6px;
+      font-family:"Cormorant Garamond", serif;
+      font-weight:300;
+      font-size:76px;
+      letter-spacing:.10em;
+      color:var(--sage);
+      text-align:center;
+      line-height:1.02;
+    }
+    .names .line{ display:block; }
+
+    .names .amp{
+      font-size:0.52em;
+      font-weight:300;
+      opacity:.85;
+      margin: 6px 0;
+      line-height:1;
     }
 
-    .name{
-      margin: 0;
-      font-weight: 500;
-      font-size: clamp(56px, 8.5vw, 86px);
+    /* ===== ДАТА (гармонично под именами) =====
+       - тот же шрифт, что и имена
+       - размер меньше имён
+       - без огромных пробелов
+       - точечки вместо пробелов выглядят аккуратнее
+    */
+    .dateLine{
+      font-family:"Cormorant Garamond", serif;
+      font-weight:300;
+      font-size:26px;
+      letter-spacing:.08em;
+      color:var(--sage);
+      margin: 6px 0 0;
+      text-align:center;
+      white-space:nowrap;
     }
 
-    .amp{
-      font-size: clamp(30px, 4.8vw, 44px);
-      line-height: 1;
-      margin: var(--amp-top) 0 var(--amp-bottom);
+    /* защита от “синих” авто-ссылок */
+    .dateLine, .dateLine a{
+      color:var(--sage) !important;
+      text-decoration:none !important;
+      -webkit-text-fill-color: var(--sage) !important;
     }
 
-    /* Убираем лишний верхний отступ у второго имени */
-    .name.second{
-      margin-top: 0;
-    }
+    /* ===== МОБИЛЬНЫЙ СЛАЙДЕР ===== */
+    .mSlider{ display:none; }
 
-    /* ДАТА — НЕ ссылка. Даже если кто-то случайно сделает <a>, вид будет как текст */
-    .date{
-      margin-top: 18px;
-      font-size: var(--date-size);
-      letter-spacing: var(--date-track);
-      line-height: 1;
-      font-weight: 500;
-      color: var(--text);
-      text-decoration: none;
-      user-select: none;
-    }
+    @media (max-width: 840px){
+      .grid{ display:none; }
+      .mSlider{ display:block; }
 
-    /* страховка: вдруг дата окажется внутри <a> */
-    .date a, a.date{
-      color: var(--text) !important;
-      text-decoration: none !important;
-    }
-    a{
-      color: inherit;
-      text-decoration: none;
-      -webkit-tap-highlight-color: transparent;
-    }
+      .mSlider{
+        position:relative;
+        max-width:520px;
+        margin:10px auto 18px;
+        border-radius:22px;
+        overflow:hidden;
+        box-shadow:0 20px 50px rgba(0,0,0,.18);
+        background: rgba(0,0,0,.06); /* чтобы не было "пустоты" если фото не прогрузилось */
+      }
 
-    @media (max-width: 420px){
-      .date{ letter-spacing: 0.18em; }
-    }
+      .mSlider img{
+        width:100%;
+        aspect-ratio:3/4;
+        object-fit:cover;
+        display:block;
+        transition:opacity .35s ease;
+        opacity:1;
+      }
+      .mSlider img.fade{ opacity:0; }
 
-    /* “пылесос” для случайного мусора, который может оказаться в углу */
-    .trash-hide{
-      position: fixed !important;
-      left: -9999px !important;
-      top: -9999px !important;
-      width: 1px !important;
-      height: 1px !important;
-      overflow: hidden !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
+      .mBtn{
+        position:absolute;
+        top:0;
+        bottom:0;
+        width:26%;
+        border:0;
+        background:transparent;
+        cursor:pointer;
+      }
+      .mBtn.left{ left:0; }
+      .mBtn.right{ right:0; }
+
+      .mBtn.left::after,
+      .mBtn.right::after{
+        content:"";
+        position:absolute;
+        top:50%;
+        width:14px;
+        height:14px;
+        border-top:2px solid rgba(255,255,255,.85);
+        border-right:2px solid rgba(255,255,255,.85);
+        transform:translateY(-50%) rotate(45deg);
+        filter:drop-shadow(0 10px 22px rgba(0,0,0,.35));
+        opacity:.95;
+      }
+      .mBtn.left::after{
+        left:18px;
+        transform:translateY(-50%) rotate(-135deg);
+      }
+      .mBtn.right::after{
+        right:18px;
+        transform:translateY(-50%) rotate(45deg);
+      }
+      .mBtn:active{ background:rgba(0,0,0,.06); }
+
+      /* телефон: ближе строки */
+      .names{
+        font-size:56px;
+        margin: 22px 0 6px;
+        line-height:1.02;
+      }
+      .names .amp{
+        margin: 2px 0;
+        font-size:0.52em;
+      }
+
+      .dateLine{
+        font-size:24px;      /* гармонично под именами */
+        letter-spacing:.08em;
+        margin-top: 6px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <main class="wrap">
-    <!-- Фото (фон). НЕ img => не будет "Фото" в углу при ошибке -->
-    <section class="photo-card" aria-label="Фотография пары"></section>
+  <div class="wrap">
 
-    <section class="names" aria-label="Имена и дата">
-      <h1 class="name first">Максим</h1>
-      <div class="amp">&amp;</div>
-      <h2 class="name second">Ангелина</h2>
+    <!-- МОБИЛЬНО: один слайд -->
+    <div class="mSlider" aria-label="Фотографии">
+      <button class="mBtn left" type="button" aria-label="Назад"></button>
+      <img id="mImg" src="photo1.jpg" alt="Фото">
+      <button class="mBtn right" type="button" aria-label="Вперёд"></button>
+    </div>
 
-      <!-- дата НЕ ссылка -->
-      <div class="date">29&nbsp;08&nbsp;2026</div>
-    </section>
-  </main>
+    <!-- ПК: 3 фото -->
+    <div class="grid">
+      <div class="ph">
+        <img src="photo1.jpg" alt="">
+        <div class="num">29</div>
+      </div>
+      <div class="ph">
+        <img src="photo2.jpg" alt="">
+        <div class="num">08</div>
+      </div>
+      <div class="ph">
+        <img src="photo3.jpg" alt="">
+        <div class="num">26</div>
+      </div>
+    </div>
+
+    <h1 class="names">
+      <span class="line">Максим</span>
+      <span class="line amp">&amp;</span>
+      <span class="line">Ангелина</span>
+    </h1>
+
+    <!-- Дата: аккуратно, без огромных пробелов -->
+    <div class="dateLine">29.08.2026</div>
+
+    <!-- RSVP убрано -->
+  </div>
 
   <script>
-    // Удаляем мусор типа ```html / ``` который иногда случайно попадает в разметку
-    (function removeTopLeftGarbage(){
-      const bad = ["```html", "```", "``", "`html"];
-      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
-      const nodes = [];
+    // Мобильный слайдер: плавно + стрелки + свайп
+    const slides = [
+      {src:"photo1.jpg"},
+      {src:"photo2.jpg"},
+      {src:"photo3.jpg"}
+    ];
 
-      while (walker.nextNode()) {
-        const n = walker.currentNode;
-        const t = (n.nodeValue || "").trim();
-        if (!t) continue;
-        if (bad.some(x => t.includes(x))) nodes.push(n);
-      }
+    let i = 0;
+    const img = document.getElementById("mImg");
+    const left = document.querySelector(".mBtn.left");
+    const right = document.querySelector(".mBtn.right");
 
-      for (const n of nodes) {
-        const cleaned = (n.nodeValue || "")
-          .replaceAll("```html","")
-          .replaceAll("```","")
-          .replaceAll("``","")
-          .replaceAll("`html","")
-          .trim();
+    function render(next){
+      i = (next + slides.length) % slides.length;
+      if(!img) return;
 
-        if (!cleaned) {
-          n.parentNode && n.parentNode.removeChild(n);
-        } else {
-          n.nodeValue = cleaned;
-          if (n.parentElement) n.parentElement.classList.add("trash-hide");
-        }
-      }
-    })();
+      img.classList.add("fade");
+      setTimeout(() => {
+        img.src = slides[i].src;
+        img.classList.remove("fade");
+      }, 180);
+    }
+
+    left?.addEventListener("click", () => render(i - 1));
+    right?.addEventListener("click", () => render(i + 1));
+
+    // свайп по фото
+    let startX = null;
+    img?.addEventListener("touchstart", (e)=> startX = e.touches[0].clientX, {passive:true});
+    img?.addEventListener("touchend", (e)=>{
+      if(startX === null) return;
+      const dx = e.changedTouches[0].clientX - startX;
+      if(Math.abs(dx) > 40) render(dx > 0 ? i - 1 : i + 1);
+      startX = null;
+    }, {passive:true});
+
+    render(0);
   </script>
 </body>
 </html>
