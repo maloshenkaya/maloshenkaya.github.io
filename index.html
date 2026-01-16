@@ -1,166 +1,236 @@
-
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Максим & Ангелина — приглашение</title>
 
-<title>Максим & Ангелина</title>
+  <!-- Шрифты -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-<style>
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  opacity:.45;
-  background:
-    /* большие круги */
-    radial-gradient(900px 520px at 20% 10%, rgba(255,255,255,.08), transparent 60%),
-    radial-gradient(900px 520px at 85% 25%, rgba(255,255,255,.06), transparent 60%),
-}
-.wrapper{
-  max-width:1100px;
-  margin:0 auto;
-  padding:40px 20px;
-  text-align:center;
-  background:transparent; /* ВАЖНО */
-}
+  <style>
+    :root{
+      --bg:#07070a;
+      --text:#f2f2f2;
+      --muted:rgba(255,255,255,.75);
+      --hair:rgba(255,255,255,.14);
+      --accent:#cfd7c4;
+      --radius:22px;
+      --serif:"Cormorant Garamond", serif;
+      --sans:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    }
 
-}
-.photos{
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:16px;
-}
-.photos div{
-  position:relative;
-}
-.photos img{
-  width:100%;
-  height:auto;
-  aspect-ratio:3 / 4;
-  object-fit:cover;
-  border-radius:20px;@media (max-width: 768px){
-  .photos{
-  grid-template-columns:1fr;
-  }
-  .photos img{
-  aspect-ratio:2 / 3;
-}
-.num{
-  position:absolute;
-  bottom:15px;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:72px;
-}
-h1{
-  margin:20px 0 10px;
-  font-family:"Cormorant Garamond", serif;
-  font-weight:300;
-  font-size:56px;
-  letter-spacing:.06em;
-  color:#cfd7c4; /* нежно-зелёный как на примере */
-}
-.date{
-  font-size:18px;
-  opacity:.8;
-}
-.section{
-  margin-top:40px;
-  padding:25px;
-  border:1px solid rgba(255,255,255,.15);
-  border-radius:18px;
-}
-.section h2{
-  margin-top:0;
-  font-size:28px;
-}
-.timeline div{
-  display:flex;
-  justify-content:space-between;
-  border-top:1px solid rgba(255,255,255,.15);
-  padding:10px 0;
-}
-a.button{
-  display:inline-block;
-  margin-top:15px;
-  padding:12px 18px;
-  background:#fff;
-  color:#000;
-  text-decoration:none;
-  border-radius:14px;
-  font-weight:bold;
-}
-iframe{
-  width:100%;
-  height:300px;
-  border:0;
-  border-radius:14px;
-}
-@media(max-width:768px){
-  .photos{grid-template-columns:1fr}
-  .photos img{height:480px}
-}
-</style>
-</head>
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:var(--bg);
+      overflow-x:hidden;
+    }
 
-<body>
-<div class="wrapper">
+    /* Фон-узор (круги/волны) */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.42;
+      background:
+        radial-gradient(900px 520px at 20% 10%, rgba(255,255,255,.09), transparent 60%),
+        radial-gradient(900px 520px at 85% 25%, rgba(255,255,255,.07), transparent 60%),
+        repeating-radial-gradient(circle at 35% 35%,
+          rgba(255,255,255,.08) 0px,
+          rgba(255,255,255,.08) 1px,
+          transparent 1px,
+          transparent 26px),
+        repeating-linear-gradient(115deg,
+          rgba(255,255,255,.04) 0px,
+          rgba(255,255,255,.04) 1px,
+          transparent 1px,
+          transparent 34px);
+      mix-blend-mode:screen;
+    }
 
-<div class="photos">
-  <div>
-    <img src="photo1.jpg">
-    <div class="num">29</div>
-  </div>
-  <div>
-    <img src="photo2.jpg">
-    <div class="num">08</div>
-  </div>
-  <div>
-    <img src="photo3.jpg">
-    <div class="num">26</div>
-  </div>
-</div>
+    .wrapper{
+      max-width:1100px;
+      margin:0 auto;
+      padding:42px 20px 60px;
+      text-align:center;
+      background:transparent; /* важно: чтобы не было белого блока */
+      position:relative;
+      z-index:1;
+    }
 
-<h1>Максим & Ангелина</h1>
-<div class="date">29 08 2026
-</div>
+    /* ====== ПК: 3 фото ====== */
+    .photos{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:18px;
+      align-items:stretch;
+      margin:0 auto 22px;
+    }
+    .ph{
+      position:relative;
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow: 0 18px 55px rgba(0,0,0,.45);
+      border:1px solid rgba(255,255,255,.10);
+      background:#0c0c10;
+    }
+    .ph img{
+      width:100%;
+      height:auto;
+      aspect-ratio:3/4;
+      object-fit:cover;
+      display:block;
+    }
+    .num{
+      position:absolute;
+      left:50%;
+      bottom:10px;
+      transform:translateX(-50%);
+      font-family:var(--serif);
+      font-weight:300;
+      font-size:120px;
+      letter-spacing:.06em;
+      color:rgba(255,255,255,.95);
+      text-shadow: 0 12px 35px rgba(0,0,0,.70);
+      pointer-events:none;
+      user-select:none;
+    }
 
-<div class="section">
-<h2>дорогие друзья и родные</h2>
-<p>Мы будем счастливы разделить с вами самый важный день нашей жизни.</p>
-<a class="button" href="#">Подтвердить присутствие</a>
-</div>
+    /* ====== Заголовок ====== */
+    h1{
+      margin:18px 0 8px;
+      font-family:var(--serif);
+      font-weight:300;
+      font-size:64px;
+      letter-spacing:.08em;
+      color:var(--accent);
+    }
+    .dateLine{
+      margin:0 0 22px;
+      color:rgba(255,255,255,.78);
+      font-family:var(--serif);
+      font-weight:300;
+      letter-spacing:.14em;
+      font-size:18px;
+    }
 
-<div class="section">
-<h2>тайминг</h2>
-<div class="timeline">
-  <div><span>16:00</span><span>Сбор гостей</span></div>
-  <div><span>16:30</span><span>Церемония</span></div>
-  <div><span>17:30</span><span>Банкет</span></div>
-  <div><span>21:00</span><span>Торт</span></div>
-</div>
-</div>
+    /* ====== Блок текста ниже (пример) ====== */
+    .section{
+      margin:26px auto 0;
+      padding:26px 22px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:24px;
+      background:rgba(10,10,14,.35);
+      backdrop-filter: blur(6px);
+      max-width:880px;
+      text-align:center;
+    }
+    .section h2{
+      margin:0 0 12px;
+      font-family:var(--serif);
+      font-weight:400;
+      letter-spacing:.08em;
+      text-transform:lowercase;
+      font-size:34px;
+      color:rgba(255,255,255,.92);
+    }
+    .section p{
+      margin:0;
+      color:rgba(255,255,255,.82);
+      font-size:16px;
+      line-height:1.6;
+    }
 
-<div class="section">
-<h2>локация</h2>
-<iframe src="https://www.google.com/maps?q=Chisinau&output=embed"></iframe>
-</div>
+    /* ====== RSVP ====== */
+    .btn{
+      display:inline-block;
+      margin-top:16px;
+      padding:14px 18px;
+      border-radius:16px;
+      background:#fff;
+      color:#0b0b0f;
+      text-decoration:none;
+      font-weight:700;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      font-size:12px;
+      border:1px solid rgba(0,0,0,.10);
+    }
 
-</div>
-</body>
-</html>
+    /* ====== Мобильный слайдер ====== */
+    .mobileSlider{ display:none; }
 
+    @media (max-width: 768px){
+      .photos{ display:none !important; }
 
+      .mobileSlider{
+        display:block;
+        position:relative;
+        width:100%;
+        max-width:520px;
+        margin:0 auto 18px;
+        border-radius:24px;
+        overflow:hidden;
+        box-shadow: 0 18px 55px rgba(0,0,0,.45);
+        border:1px solid rgba(255,255,255,.10);
+        background:#0c0c10;
+      }
 
+      .mobileSlider img{
+        width:100%;
+        height:auto;
+        aspect-ratio: 3 / 4;
+        object-fit:cover;
+        display:block;
+      }
 
+      /* вертикальные зоны слева/справа */
+      .mNav{
+        position:absolute;
+        top:0;
+        bottom:0;
+        width:22%;
+        border:0;
+        cursor:pointer;
+        background: rgba(0,0,0,.08);
+        color: rgba(255,255,255,.92);
+        font-family:var(--serif);
+        font-weight:300;
+        font-size:72px;
+        line-height:1;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        text-shadow: 0 12px 35px rgba(0,0,0,.75);
+      }
+      .mNav.left{ left:0; }
+      .mNav.right{ right:0; }
+      .mNav:active{ background: rgba(0,0,0,.22); }
 
+      /* цифры поверх фото на мобиле (как на шаблоне) */
+      .mNum{
+        position:absolute;
+        left:50%;
+        bottom:10px;
+        transform:translateX(-50%);
+        font-family:var(--serif);
+        font-weight:300;
+        font-size:110px;
+        letter-spacing:.06em;
+        color:rgba(255,255,255,.95);
+        text-shadow: 0 12px 35px rgba(0,0,0,.75);
+        pointer-events:none;
+        user-select:none;
+      }
 
-
-
+      h1{ font-size:50px; }
+      .dateLine{ font-size:16px; }
+    }
+  </
 
