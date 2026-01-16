@@ -45,14 +45,6 @@
     radial-gradient(1200px 800px at 18% 20%, rgba(255,255,255,.06), transparent 62%),
     radial-gradient(1000px 700px at 82% 30%, rgba(255,255,255,.05), transparent 60%),
     radial-gradient(1100px 900px at 50% 95%, rgba(255,255,255,.04), transparent 60%),
-
-    /* волны #1 (другой центр и шаг) */
-    repeating-radial-gradient(
-      circle at 18% 34%,
-      rgba(255,255,255,.085) 0px,
-      rgba(255,255,255,.085) 1px,
-      transparent 1px,
-      transparent 54px
     ),
     body{
   margin:0;
@@ -73,6 +65,28 @@
       transparent 1px,
       transparent 68px
     ),
+    /* ===== ТОЛЬКО ДЛЯ ТЕЛЕФОНА ===== */
+@media (max-width: 768px) {
+
+  .names {
+    position: fixed;               /* фиксируем по экрану */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+    text-align: center;
+
+    font-size: 38px;               /* размер как в референсе */
+    line-height: 1.15;
+    letter-spacing: 0.04em;
+
+    z-index: 20;                   /* поверх слайдера */
+    pointer-events: none;          /* не мешает свайпу */
+  }
+
+}
+ 
 
     /* очень лёгкая диагональная "дымка", чтобы линии не были стерильными */
     repeating-linear-gradient(
@@ -313,6 +327,7 @@
   </script>
 </body>
 </html>
+
 
 
 
