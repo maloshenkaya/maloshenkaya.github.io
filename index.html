@@ -3,7 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Максим & Ангелина</title>
+  <title><h1>Максим
+&
+Ангелина</h1>
+</title>
 
   <!-- Шрифты как в "премиум" приглашениях -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,7 +40,15 @@
     z-index: 20;                   /* поверх слайдера */
     pointer-events: none;          /* не мешает свайпу */
   }
+@media (max-width: 768px) {
 
+  /* Центрируем блок с именами (ищем по твоей разметке максимально безопасно) */
+  h1, .title, .names {
+    text-align: center !important;
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
 }
 
     *{ box-sizing:border-box; }
@@ -348,6 +359,7 @@
   </script>
 </body>
 </html>
+
 
 
 
