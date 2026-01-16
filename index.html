@@ -28,49 +28,40 @@
       overflow-x:hidden;
     }
 
-    /* Волны (оригинальный узор, без картинок) */
+    /* ====== ВОЛНЫ (рабочий фон, как референс: светлые контурные линии на тёмном) ====== */
     body::before{
       content:"";
       position:fixed;
-      inset:-80px;
+      inset:0;
       pointer-events:none;
+      z-index:0;
       opacity:1;
+
       background:
-        radial-gradient(1200px 800px at 18% 20%, rgba(255,255,255,.06), transparent 62%),
-        radial-gradient(1000px 700px at 82% 30%, rgba(255,255,255,.05), transparent 60%),
-        radial-gradient(1100px 900px at 50% 95%, rgba(255,255,255,.04), transparent 60%),
+        radial-gradient(1100px 700px at 18% 22%, rgba(255,255,255,.06), transparent 60%),
+        radial-gradient(900px 600px at 82% 30%, rgba(255,255,255,.05), transparent 62%),
+        radial-gradient(1000px 900px at 50% 95%, rgba(255,255,255,.04), transparent 62%),
 
-        /* волны #1 */
-        repeating-radial-gradient(
-          circle at 12% 28%,
-          rgba(255,255,255,.10) 0px,
-          rgba(255,255,255,.10) 1px,
-          transparent 1px,
-          transparent 64px
-        ),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800' viewBox='0 0 1200 800'%3E%3Crect width='1200' height='800' fill='none'/%3E%3Cg fill='none' stroke='rgba(255,255,255,0.10)' stroke-width='2'%3E%3Cpath d='M-80 120 C 80 30, 220 210, 380 120 S 680 30, 860 120 S 1100 210, 1280 120'/%3E%3Cpath d='M-120 240 C 70 150, 230 350, 440 240 S 770 130, 980 240 S 1200 350, 1400 240'/%3E%3Cpath d='M-90 360 C 90 270, 280 470, 500 360 S 860 250, 1080 360 S 1280 470, 1500 360'/%3E%3Cpath d='M-140 480 C 60 390, 300 600, 560 480 S 940 360, 1180 480 S 1380 600, 1600 480'/%3E%3Cpath d='M-110 600 C 90 520, 340 720, 600 600 S 980 480, 1240 600 S 1460 720, 1700 600'/%3E%3C/g%3E%3Cg fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='2'%3E%3Cpath d='M-60 170 C 120 80, 260 260, 420 170 S 720 80, 900 170 S 1120 260, 1320 170'/%3E%3Cpath d='M-80 410 C 120 320, 320 520, 540 410 S 880 300, 1100 410 S 1300 520, 1520 410'/%3E%3C/g%3E%3C/svg%3E"),
 
-        /* волны #2 */
-        repeating-radial-gradient(
-          circle at 86% 72%,
-          rgba(255,255,255,.07) 0px,
-          rgba(255,255,255,.07) 1px,
-          transparent 1px,
-          transparent 68px
-        ),
-
-        /* лёгкая дымка */
         repeating-linear-gradient(
           135deg,
           rgba(255,255,255,.010) 0px,
           rgba(255,255,255,.010) 2px,
           transparent 2px,
-          transparent 22px
+          transparent 24px
         );
+
+      background-repeat: no-repeat, no-repeat, no-repeat, repeat, repeat;
+      background-size: auto, auto, auto, 1200px 800px, auto;
+      background-position: center, center, center, center, center;
+
       filter: blur(.15px);
     }
 
     .wrap{
       position:relative;
+      z-index:1;            /* контент поверх волн */
       max-width:1100px;
       margin:0 auto;
       padding:28px 20px 60px;
@@ -95,20 +86,49 @@
 
     .ph img{
       width:100%;
-      aspect-ratio:3/4;
+      aspect-ratio:3/4;       /* вертикальные */
       object-fit:cover;
       display:block;
     }
 
-    /* ===== Заголовок и дата ===== */
+    /* ====== ЦИФРЫ НА ФОТО (только ПК) ====== */
+    .ph .num{
+      position:absolute;
+      left:50%;
+      bottom:-18px;
+      transform:translateX(-50%);
+      font-family:"Cormorant Garamond", serif;
+      font-weight:300;
+      font-size:170px;
+      letter-spacing:.02em;
+      color:rgba(255,255,255,.92);
+      text-shadow:0 20px 60px rgba(0,0,0,.55);
+      pointer-events:none;
+      user-select:none;
+    }
+
+    /* ===== ТЕКСТ ===== */
     .names{
-      margin:34px 0 8px;
+      margin:34px 0 6px;
       font-family:"Cormorant Garamond", serif;
       font-weight:300;
       font-size:76px;
       letter-spacing:.10em;
       color:var(--sage);
       text-align:center;
+    }
+
+    .names .line{
+      display:inline;
+    }
+
+    .names .amp{
+      display:inline-block;
+      font-size:0.62em;        /* меньше, чем имена */
+      font-weight:300;         /* тоньше */
+      opacity:.92;
+      margin:0 .25em;
+      transform:translateY(-.06em);
     }
 
     .dateLine{
@@ -118,20 +138,17 @@
       letter-spacing:.22em;
       color:rgba(233,230,223,.70);
       text-align:center;
+      margin-bottom:6px;
     }
 
-    /* ===== МОБИЛЬНЫЙ СЛАЙДЕР ===== */
+    /* ===== МОБИЛЬНЫЙ СЛАЙДЕР (одно фото + стрелки + плавно) ===== */
     .mSlider{ display:none; }
 
     @media (max-width: 840px){
-      .grid{ display:none; }
-      .names{ font-size:52px; }
-      .dateLine{ font-size:16px; }
-    }
+      .grid{ display:none; }   /* на телефоне прячем 3 фото */
+      .mSlider{ display:block; }
 
-    @media (max-width: 840px){
       .mSlider{
-        display:block;
         position:relative;
         max-width:520px;
         margin:10px auto 18px;
@@ -184,26 +201,33 @@
         right:18px;
         transform:translateY(-50%) rotate(45deg);
       }
+
       .mBtn:active{ background:rgba(0,0,0,.10); }
 
-      /* ТОЛЬКО ДЛЯ ТЕЛЕФОНА: имена в 3 строки и & меньше/тоньше */
+      /* ===== ТОЛЬКО ДЛЯ ТЕЛЕФОНА: имена строго по центру (как в референсе) ===== */
       .names{
         width:100%;
-        margin:18px auto 6px;
-        letter-spacing:.08em;
+        margin:24px auto 6px;
+        text-align:center;
+        font-size:56px;
       }
+
       .names .line{
-        display:block;
+        display:block;          /* Максим / & / Ангелина на разных строках */
         width:100%;
         text-align:center;
       }
-      .names .ampSign{
-        display:block;
-        font-size:.55em;   /* меньше */
-        font-weight:300;   /* тоньше */
-        opacity:.9;
+
+      .names .amp{
+        display:inline-block;
         margin:10px 0;
-        line-height:1;
+        font-size:0.55em;       /* на телефоне ещё чуть меньше */
+        transform:translateY(-.02em);
+      }
+
+      .dateLine{
+        font-size:16px;
+        margin-bottom:0;
       }
     }
   </style>
@@ -221,22 +245,32 @@
 
     <!-- ПК: 3 фото -->
     <div class="grid">
-      <div class="ph"><img src="photo1.jpg" alt=""></div>
-      <div class="ph"><img src="photo2.jpg" alt=""></div>
-      <div class="ph"><img src="photo3.jpg" alt=""></div>
+      <div class="ph">
+        <img src="photo1.jpg" alt="">
+        <div class="num">29</div>
+      </div>
+      <div class="ph">
+        <img src="photo2.jpg" alt="">
+        <div class="num">08</div>
+      </div>
+      <div class="ph">
+        <img src="photo3.jpg" alt="">
+        <div class="num">26</div>
+      </div>
     </div>
 
-    <!-- Имена (по центру) -->
+    <!-- Имена -->
     <h1 class="names">
       <span class="line">Максим</span>
-      <span class="line ampSign">&amp;</span>
+      <span class="line amp">&amp;</span>
       <span class="line">Ангелина</span>
     </h1>
 
     <!-- Дата под именами -->
     <div class="dateLine">29 08 2026</div>
 
-    <!-- RSVP УБРАНО — вы вставите позже -->
+    <!-- RSVP УБРАНО (как вы просили) -->
+
   </div>
 
   <script>
