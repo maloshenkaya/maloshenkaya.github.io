@@ -269,36 +269,7 @@
 
     <!-- Дата под именами -->
     <div class="dateLine">29 08 2026</div>
-    .dateLine{
-  font-family:"Cormorant Garamond", serif;
-  font-weight:300;
-  letter-spacing:.22em;
-  color:rgba(207,215,196,.85); /* как у имён (sage-оттенок) */
-  text-align:center;
-  margin: 6px 0 0;
-  text-decoration:none;
-}
-
-/* если браузер сделал её "ссылкой" — принудительно убираем синий/подчёркивание */
-.dateLine, .dateLine a{
-  color:rgba(207,215,196,.85) !important;
-  text-decoration:none !important;
-  -webkit-text-fill-color: rgba(207,215,196,.85) !important;
-}
-
-/* размер даты на ПК */
-@media (min-width: 841px){
-  .dateLine{ font-size:18px; }
-}
-
-/* размер даты на телефоне — КРУПНЕЕ */
-@media (max-width: 840px){
-  .dateLine{
-    font-size:24px;      /* сделала крупнее */
-    letter-spacing:.18em;
-    margin-top:10px;
-  }
-}
+    
 
 
     <!-- RSVP УБРАНО (как вы просили) -->
@@ -346,5 +317,6 @@
   </script>
 </body>
 </html>
+
 
 
