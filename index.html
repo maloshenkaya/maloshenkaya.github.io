@@ -19,54 +19,15 @@
       --wave: rgba(255,255,255,.10);
       --wave2: rgba(255,255,255,.07);
     }
-    @media (max-width: 768px) {
-
-  /* ЖЁСТКО центрируем имена по экрану */
-  h1, .title {
-    width: 100vw !important;
-    max-width: 100vw !important;
-
-    margin-left: calc(50% - 50vw) !important;
-    margin-right: 0 !important;
-
-    text-align: center !important;
-
-    display: block;
-  }
-
-}
-
-/* ===== ТОЛЬКО ДЛЯ ТЕЛЕФОНА ===== */
-@media (max-width: 768px) {
-
-  .names {
-    position: fixed;               /* фиксируем по экрану */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    width: 100%;
-    text-align: center;
-
-    font-size: 38px;               /* размер как в референсе */
-    line-height: 1.15;
-    letter-spacing: 0.04em;
-
-    z-index: 20;                   /* поверх слайдера */
-    pointer-events: none;          /* не мешает свайпу */
-  }
-@media (max-width: 768px) {
-
-  /* Центрируем блок с именами (ищем по твоей разметке максимально безопасно) */
-  h1, .title, .names {
-    text-align: center !important;
+   @media (max-width: 840px){
+  h1{
     width: 100% !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    text-align: center !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 }
 
-    *{ box-sizing:border-box; }
     html,body{ height:100%; }
 
     body{
@@ -378,6 +339,7 @@
   </script>
 </body>
 </html>
+
 
 
 
