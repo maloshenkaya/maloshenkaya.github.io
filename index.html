@@ -10,20 +10,24 @@
       --bg: #f4f2ed;
       --text: #6f7568;
 
+      /* ВАЖНО: путь к фото (положите фото в repo: assets/photo.jpg) */
+      --photo-url: url("assets/photo.jpg");
+
       --card-radius: 28px;
       --shadow: 0 18px 40px rgba(0,0,0,.10);
 
-      /* ТЗ: уменьшить вертикальный отступ между & и "Ангелина" */
-      --amp-gap-bottom: 4px; /* сделайте 0px если нужно ещё ближе */
+      /* ТЗ: меньше вертикального пространства между & и Ангелина */
+      --amp-top: 10px;
+      --amp-bottom: 2px; /* уменьшайте до 0px если нужно ещё ближе */
 
-      /* ТЗ: цифры под именами увеличить в 2 раза */
-      --date-size: clamp(38px, 6.5vw, 64px);
-      --date-tracking: 0.28em;
+      /* ТЗ: цифры под именами сделать ещё больше в 2 раза */
+      --date-size: clamp(76px, 12vw, 140px);  /* ОЧЕНЬ крупно */
+      --date-track: 0.22em;
     }
 
     * { box-sizing: border-box; }
 
-    body {
+    body{
       margin: 0;
       min-height: 100svh;
       display: grid;
@@ -34,25 +38,14 @@
       overflow-x: hidden;
     }
 
-    /* Лёгкий фон с линиями (как на скрине) */
-    body::before{
-      content:"";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: .35;
-      background:
-        radial-gradient(circle at 20% 10%, transparent 0 64%, rgba(120,120,120,.25) 65% 66%, transparent 67% 100%),
-        radial-gradient(circle at 70% 35%, transparent 0 62%, rgba(120,120,120,.22) 63% 64%, transparent 65% 100%),
-        radial-gradient(circle at 40% 75%, transparent 0 60%, rgba(120,120,120,.18) 61% 62%, transparent 63% 100%),
-        radial-gradient(circle at 85% 80%, transparent 0 66%, rgba(120,120,120,.18) 67% 68%, transparent 69% 100%);
-      filter: blur(.2px);
-    }
+    /* если вдруг где-то попали markdown-блоки — не показываем */
+    pre, code { display:none !important; }
 
     .wrap{
-      width: min(680px, 92vw);
-      padding: 26px 18px 40px;
+      width: min(720px, 92vw);
+      padding: 26px 18px 44px;
       text-align: center;
+      position: relative;
     }
 
     .photo-card{
@@ -61,19 +54,13 @@
       border-radius: var(--card-radius);
       overflow: hidden;
       box-shadow: var(--shadow);
-      background: #ddd;
-      position: relative;
+      background-color: #ddd;
+      background-image: var(--photo-url);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
-    .photo-card img{
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transform: translateZ(0);
-    }
-
-    /* Имена */
     .names{
       margin-top: 28px;
       line-height: 1;
@@ -86,40 +73,47 @@
       font-size: clamp(56px, 8.5vw, 86px);
     }
 
-    /* Амперсанд */
     .amp{
-      margin: 14px 0 var(--amp-gap-bottom); /* ↓ нижний отступ минимальный */
       font-size: clamp(30px, 4.8vw, 44px);
       line-height: 1;
+      margin: var(--amp-top) 0 var(--amp-bottom);
     }
 
-    /* Чтобы "Ангелина" не отъезжала вниз из-за дефолтных margin */
+    /* Убираем лишний верхний отступ у второго имени */
     .name.second{
       margin-top: 0;
     }
 
-    /* Дата (цифры) — в 2 раза больше */
+    /* ДАТА — НЕ ссылка. Даже если кто-то случайно сделает <a>, вид будет как текст */
     .date{
-      margin-top: 16px;
+      margin-top: 18px;
       font-size: var(--date-size);
-      letter-spacing: var(--date-tracking);
+      letter-spacing: var(--date-track);
       line-height: 1;
       font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      user-select: none;
     }
 
-    /* На маленьких экранах чуть уменьшим трекинг, чтобы не ломалось */
+    /* страховка: вдруг дата окажется внутри <a> */
+    .date a, a.date{
+      color: var(--text) !important;
+      text-decoration: none !important;
+    }
+    a{
+      color: inherit;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
     @media (max-width: 420px){
-      .date{ letter-spacing: 0.22em; }
+      .date{ letter-spacing: 0.18em; }
     }
 
-    /* Страховка: если вдруг на страницу попадут pre/code как текст — не показываем */
-    pre, code{
-      display: none !important;
-    }
-
-    /* Страховка №2: если вдруг какой-то элемент появится в левом верхнем углу */
-    .kill-markdown-garbage{
-      position: absolute !important;
+    /* “пылесос” для случайного мусора, который может оказаться в углу */
+    .trash-hide{
+      position: fixed !important;
       left: -9999px !important;
       top: -9999px !important;
       width: 1px !important;
@@ -133,57 +127,46 @@
 
 <body>
   <main class="wrap">
-    <section class="photo-card" aria-label="Фото пары">
-      <!-- Замените на ваше фото -->
-      <img src="photo.jpg" alt="Фото" />
-    </section>
+    <!-- Фото (фон). НЕ img => не будет "Фото" в углу при ошибке -->
+    <section class="photo-card" aria-label="Фотография пары"></section>
 
     <section class="names" aria-label="Имена и дата">
       <h1 class="name first">Максим</h1>
       <div class="amp">&amp;</div>
       <h2 class="name second">Ангелина</h2>
 
+      <!-- дата НЕ ссылка -->
       <div class="date">29&nbsp;08&nbsp;2026</div>
     </section>
   </main>
 
   <script>
-    /**
-     * "Программа" удаления чёрных букв ```html, если они вдруг оказались
-     * текстом в DOM (как на вашем старом скрине).
-     *
-     * 1) Ищем текстовые узлы, где встречается ```html или просто ```
-     * 2) Удаляем их, либо очищаем содержимое
-     */
-    (function removeMarkdownGarbage(){
-      const badPatterns = ["```html", "```"];
+    // Удаляем мусор типа ```html / ``` который иногда случайно попадает в разметку
+    (function removeTopLeftGarbage(){
+      const bad = ["```html", "```", "``", "`html"];
       const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+      const nodes = [];
 
-      const toClean = [];
       while (walker.nextNode()) {
-        const node = walker.currentNode;
-        const t = (node.nodeValue || "").trim();
+        const n = walker.currentNode;
+        const t = (n.nodeValue || "").trim();
         if (!t) continue;
-
-        if (badPatterns.some(p => t.includes(p))) {
-          toClean.push(node);
-        }
+        if (bad.some(x => t.includes(x))) nodes.push(n);
       }
 
-      for (const n of toClean) {
-        // Если в узле только мусор — удаляем целиком
-        const raw = (n.nodeValue || "");
-        const cleaned = raw
-          .replaceAll("```html", "")
-          .replaceAll("```", "")
+      for (const n of nodes) {
+        const cleaned = (n.nodeValue || "")
+          .replaceAll("```html","")
+          .replaceAll("```","")
+          .replaceAll("``","")
+          .replaceAll("`html","")
           .trim();
 
         if (!cleaned) {
           n.parentNode && n.parentNode.removeChild(n);
         } else {
           n.nodeValue = cleaned;
-          // Если это вдруг было в отдельном элементе, прячем контейнер
-          if (n.parentElement) n.parentElement.classList.add("kill-markdown-garbage");
+          if (n.parentElement) n.parentElement.classList.add("trash-hide");
         }
       }
     })();
