@@ -1,236 +1,165 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Максим & Ангелина — приглашение</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Шрифты -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Максим & Ангелина</title>
 
-  <style>
-    :root{
-      --bg:#07070a;
-      --text:#f2f2f2;
-      --muted:rgba(255,255,255,.75);
-      --hair:rgba(255,255,255,.14);
-      --accent:#cfd7c4;
-      --radius:22px;
-      --serif:"Cormorant Garamond", serif;
-      --sans:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-    }
+<!-- Шрифты -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:var(--sans);
-      color:var(--text);
-      background:var(--bg);
-      overflow-x:hidden;
-    }
+<style>
+body{
+  margin:0;
+  font-family:"Inter", sans-serif;
+  background:#0b0b0e;
+  color:#e9e6df;
+  text-align:center;
+  position:relative;
+  overflow-x:hidden;
+}
 
-    /* Фон-узор (круги/волны) */
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      opacity:.42;
-      background:
-        radial-gradient(900px 520px at 20% 10%, rgba(255,255,255,.09), transparent 60%),
-        radial-gradient(900px 520px at 85% 25%, rgba(255,255,255,.07), transparent 60%),
-        repeating-radial-gradient(circle at 35% 35%,
-          rgba(255,255,255,.08) 0px,
-          rgba(255,255,255,.08) 1px,
-          transparent 1px,
-          transparent 26px),
-        repeating-linear-gradient(115deg,
-          rgba(255,255,255,.04) 0px,
-          rgba(255,255,255,.04) 1px,
-          transparent 1px,
-          transparent 34px);
-      mix-blend-mode:screen;
-    }
+/* Волны */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.35;
+  background:
+    repeating-linear-gradient(120deg,
+      rgba(255,255,255,.05) 0px,
+      rgba(255,255,255,.05) 1px,
+      transparent 1px,
+      transparent 36px);
+}
 
-    .wrapper{
-      max-width:1100px;
-      margin:0 auto;
-      padding:42px 20px 60px;
-      text-align:center;
-      background:transparent; /* важно: чтобы не было белого блока */
-      position:relative;
-      z-index:1;
-    }
+/* Обёртка */
+.wrapper{
+  max-width:1100px;
+  margin:auto;
+  padding:40px 20px;
+}
 
-    /* ====== ПК: 3 фото ====== */
-    .photos{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:18px;
-      align-items:stretch;
-      margin:0 auto 22px;
-    }
-    .ph{
-      position:relative;
-      border-radius:24px;
-      overflow:hidden;
-      box-shadow: 0 18px 55px rgba(0,0,0,.45);
-      border:1px solid rgba(255,255,255,.10);
-      background:#0c0c10;
-    }
-    .ph img{
-      width:100%;
-      height:auto;
-      aspect-ratio:3/4;
-      object-fit:cover;
-      display:block;
-    }
-    .num{
-      position:absolute;
-      left:50%;
-      bottom:10px;
-      transform:translateX(-50%);
-      font-family:var(--serif);
-      font-weight:300;
-      font-size:120px;
-      letter-spacing:.06em;
-      color:rgba(255,255,255,.95);
-      text-shadow: 0 12px 35px rgba(0,0,0,.70);
-      pointer-events:none;
-      user-select:none;
-    }
+/* Фото — ПК */
+.photos{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
 
-    /* ====== Заголовок ====== */
-    h1{
-      margin:18px 0 8px;
-      font-family:var(--serif);
-      font-weight:300;
-      font-size:64px;
-      letter-spacing:.08em;
-      color:var(--accent);
-    }
-    .dateLine{
-      margin:0 0 22px;
-      color:rgba(255,255,255,.78);
-      font-family:var(--serif);
-      font-weight:300;
-      letter-spacing:.14em;
-      font-size:18px;
-    }
+.photos img{
+  width:100%;
+  aspect-ratio:3/4;
+  object-fit:cover;
+  border-radius:22px;
+}
 
-    /* ====== Блок текста ниже (пример) ====== */
-    .section{
-      margin:26px auto 0;
-      padding:26px 22px;
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:24px;
-      background:rgba(10,10,14,.35);
-      backdrop-filter: blur(6px);
-      max-width:880px;
-      text-align:center;
-    }
-    .section h2{
-      margin:0 0 12px;
-      font-family:var(--serif);
-      font-weight:400;
-      letter-spacing:.08em;
-      text-transform:lowercase;
-      font-size:34px;
-      color:rgba(255,255,255,.92);
-    }
-    .section p{
-      margin:0;
-      color:rgba(255,255,255,.82);
-      font-size:16px;
-      line-height:1.6;
-    }
+/* Дата */
+.date{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  margin-top:12px;
+  font-family:"Cormorant Garamond", serif;
+  font-size:56px;
+  letter-spacing:.12em;
+  color:#fff;
+}
 
-    /* ====== RSVP ====== */
-    .btn{
-      display:inline-block;
-      margin-top:16px;
-      padding:14px 18px;
-      border-radius:16px;
-      background:#fff;
-      color:#0b0b0f;
-      text-decoration:none;
-      font-weight:700;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      font-size:12px;
-      border:1px solid rgba(0,0,0,.10);
-    }
+/* Имена */
+h1{
+  margin:40px 0 10px;
+  font-family:"Cormorant Garamond", serif;
+  font-weight:300;
+  letter-spacing:.1em;
+  color:#cfd7c4;
+}
 
-    /* ====== Мобильный слайдер ====== */
-    .mobileSlider{ display:none; }
+.subtitle{
+  opacity:.8;
+}
 
-    @media (max-width: 768px){
-      .photos{ display:none !important; }
+/* ===== МОБИЛЬНЫЙ СЛАЙДЕР ===== */
+@media(max-width:768px){
 
-      .mobileSlider{
-        display:block;
-        position:relative;
-        width:100%;
-        max-width:520px;
-        margin:0 auto 18px;
-        border-radius:24px;
-        overflow:hidden;
-        box-shadow: 0 18px 55px rgba(0,0,0,.45);
-        border:1px solid rgba(255,255,255,.10);
-        background:#0c0c10;
-      }
+  .photos{
+    grid-template-columns:1fr;
+    position:relative;
+  }
 
-      .mobileSlider img{
-        width:100%;
-        height:auto;
-        aspect-ratio: 3 / 4;
-        object-fit:cover;
-        display:block;
-      }
+  .photos img{
+    display:none;
+  }
 
-      /* вертикальные зоны слева/справа */
-      .mNav{
-        position:absolute;
-        top:0;
-        bottom:0;
-        width:22%;
-        border:0;
-        cursor:pointer;
-        background: rgba(0,0,0,.08);
-        color: rgba(255,255,255,.92);
-        font-family:var(--serif);
-        font-weight:300;
-        font-size:72px;
-        line-height:1;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        text-shadow: 0 12px 35px rgba(0,0,0,.75);
-      }
-      .mNav.left{ left:0; }
-      .mNav.right{ right:0; }
-      .mNav:active{ background: rgba(0,0,0,.22); }
+  .photos img.active{
+    display:block;
+  }
 
-      /* цифры поверх фото на мобиле (как на шаблоне) */
-      .mNum{
-        position:absolute;
-        left:50%;
-        bottom:10px;
-        transform:translateX(-50%);
-        font-family:var(--serif);
-        font-weight:300;
-        font-size:110px;
-        letter-spacing:.06em;
-        color:rgba(255,255,255,.95);
-        text-shadow: 0 12px 35px rgba(0,0,0,.75);
-        pointer-events:none;
-        user-select:none;
-      }
+  .slider-zone{
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:50%;
+    z-index:10;
+  }
 
-      h1{ font-size:50px; }
-      .dateLine{ font-size:16px; }
-    }
-  </
+  .left{ left:0; }
+  .right{ right:0; }
 
+  .date{
+    grid-template-columns:1fr;
+    font-size:48px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+  <div class="photos">
+    <img src="photo1.jpg" class="active">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+
+    <div class="slider-zone left" onclick="prev()"></div>
+    <div class="slider-zone right" onclick="next()"></div>
+  </div>
+
+  <div class="date">
+    <div>29</div>
+    <div>08</div>
+    <div>26</div>
+  </div>
+
+  <h1>Максим & Ангелина</h1>
+  <div class="subtitle">29 08 2026</div>
+
+</div>
+
+<script>
+let index = 0;
+const imgs = document.querySelectorAll('.photos img');
+
+function show(i){
+  imgs.forEach(img=>img.classList.remove('active'));
+  imgs[i].classList.add('active');
+}
+
+function next(){
+  index = (index + 1) % imgs.length;
+  show(index);
+}
+
+function prev(){
+  index = (index - 1 + imgs.length) % imgs.length;
+  show(index);
+}
+</script>
+
+</body>
+</html>
