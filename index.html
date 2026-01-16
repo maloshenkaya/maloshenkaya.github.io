@@ -29,7 +29,7 @@
       overflow-x:hidden;
     }
 
-    /* ====== ВОЛНЫ (рабочий фон, как референс: светлые контурные линии на тёмном) ====== */
+    /* ====== ВОЛНЫ (без полосок), рабочий фон ====== */
     body::before{
       content:"";
       position:fixed;
@@ -43,19 +43,18 @@
         radial-gradient(900px 600px at 82% 30%, rgba(255,255,255,.05), transparent 62%),
         radial-gradient(1000px 900px at 50% 95%, rgba(255,255,255,.04), transparent 62%),
 
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800' viewBox='0 0 1200 800'%3E%3Crect width='1200' height='800' fill='none'/%3E%3Cg fill='none' stroke='rgba(255,255,255,0.10)' stroke-width='2'%3E%3Cpath d='M-80 120 C 80 30, 220 210, 380 120 S 680 30, 860 120 S 1100 210, 1280 120'/%3E%3Cpath d='M-120 240 C 70 150, 230 350, 440 240 S 770 130, 980 240 S 1200 350, 1400 240'/%3E%3Cpath d='M-90 360 C 90 270, 280 470, 500 360 S 860 250, 1080 360 S 1280 470, 1500 360'/%3E%3Cpath d='M-140 480 C 60 390, 300 600, 560 480 S 940 360, 1180 480 S 1380 600, 1600 480'/%3E%3Cpath d='M-110 600 C 90 520, 340 720, 600 600 S 980 480, 1240 600 S 1460 720, 1700 600'/%3E%3C/g%3E%3Cg fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='2'%3E%3Cpath d='M-60 170 C 120 80, 260 260, 420 170 S 720 80, 900 170 S 1120 260, 1320 170'/%3E%3Cpath d='M-80 410 C 120 320, 320 520, 540 410 S 880 300, 1100 410 S 1300 520, 1520 410'/%3E%3C/g%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800' viewBox='0 0 1200 800'%3E%3Crect width='1200' height='800' fill='none'/%3E%3Cg fill='none' stroke='rgba(255,255,255,0.10)' stroke-width='2'%3E%3Cpath d='M-80 120 C 80 30, 220 210, 380 120 S 680 30, 860 120 S 1100 210, 1280 120'/%3E%3Cpath d='M-120 240 C 70 150, 230 350, 440 240 S 770 130, 980 240 S 1200 350, 1400 240'/%3E%3Cpath d='M-90 360 C 90 270, 280 470, 500 360 S 860 250, 1080 360 S 1280 470, 1500 360'/%3E%3Cpath d='M-140 480 C 60 390, 300 600, 560 480 S 940 360, 1180 480 S 1380 600, 1600 480'/%3E%3Cpath d='M-110 600 C 90 520, 340 720, 600 600 S 980 480, 1240 600 S 1460 720, 1700 600'/%3E%3C/g%3E%3Cg fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='2'%3E%3Cpath d='M-60 170 C 120 80, 260 260, 420 170 S 720 80, 900 170 S 1120 260, 1320 170'/%3E%3Cpath d='M-80 410 C 120 320, 320 520, 540 410 S 880 300, 1100 410 S 1300 520, 1520 410'/%3E%3C/g%3E%3C/svg%3E");
 
+      background-repeat: no-repeat, no-repeat, no-repeat, repeat;
+      background-size: auto, auto, auto, 1200px 800px;
+      background-position: center, center, center, center;
 
-      background-repeat: no-repeat, no-repeat, no-repeat, repeat, repeat;
-      background-size: auto, auto, auto, 1200px 800px, auto;
-      background-position: center, center, center, center, center;
-
-      filter: blur(.15px);
+      filter: blur(.12px);
     }
 
     .wrap{
       position:relative;
-      z-index:1;            /* контент поверх волн */
+      z-index:1;
       max-width:1100px;
       margin:0 auto;
       padding:28px 20px 60px;
@@ -80,7 +79,7 @@
 
     .ph img{
       width:100%;
-      aspect-ratio:3/4;       /* вертикальные */
+      aspect-ratio:3/4;
       object-fit:cover;
       display:block;
     }
@@ -101,70 +100,52 @@
       user-select:none;
     }
 
-    /* ===== ТЕКСТ ===== */
-    /* Имена */
-.names{
-  margin:34px 0 8px;
-  font-family:"Cormorant Garamond", serif;
-  font-weight:300;
-  font-size:76px;
-  letter-spacing:.10em;
-  color:var(--sage);
-  text-align:center;
-}
-
-.names .line{ display:block; }
-
-/* знак & — меньше и тоньше */
-.names .amp{
-  font-size:0.55em;
-  font-weight:300;
-  opacity:.85;
-}
-
-/* Дата — тот же шрифт, что и имена */
-.dateLine{
-  font-family:"Cormorant Garamond", serif;
-  font-weight:300;
-  font-size:22px;
-  letter-spacing:.20em;
-  color:rgba(207,215,196,.85);
-  text-align:center;
-  margin: 10px 0 0;
-  text-decoration:none;
-}
-
-.dateLine, .dateLine a{
-  color:rgba(207,215,196,.85) !important;
-  text-decoration:none !important;
-  -webkit-text-fill-color: rgba(207,215,196,.85) !important;
-}
-
-/* ТОЛЬКО ТЕЛЕФОН: уменьшить вертикальные расстояния между строками */
-@media (max-width: 840px){
-  .names{
-    font-size:54px;
-    margin: 18px 0 6px;
-    line-height: 1.05;       /* строки ближе */
-  }
-  .names .amp{
-    margin: 2px 0;           /* было большое — делаем маленькое */
-  }
-
-  .dateLine{
-    font-size:24px;          /* дата крупнее */
-    margin-top: 8px;
-    letter-spacing:.18em;
-  }
-}
-
+    /* ===== ИМЕНА + ДАТА ===== */
+    .names{
+      margin:34px 0 8px;
+      font-family:"Cormorant Garamond", serif;
+      font-weight:300;
+      font-size:76px;
+      letter-spacing:.10em;
+      color:var(--sage);
+      text-align:center;
+      line-height:1.02;
     }
 
-    /* ===== МОБИЛЬНЫЙ СЛАЙДЕР (одно фото + стрелки + плавно) ===== */
+    .names .line{ display:block; }
+
+    /* знак & — меньше и тоньше */
+    .names .amp{
+      font-size:0.52em;
+      font-weight:300;
+      opacity:.85;
+      margin: 6px 0; /* расстояние между строками (ПК) */
+    }
+
+    /* Дата — тот же шрифт, что и имена */
+    .dateLine{
+      font-family:"Cormorant Garamond", serif;
+      font-weight:300;
+      font-size:24px;
+      letter-spacing:.18em;
+      color:rgba(207,215,196,.85);
+      text-align:center;
+      margin: 10px 0 0;
+      text-decoration:none;
+    }
+
+    /* убираем авто-стили iOS на "похожие на ссылки" даты */
+    .dateLine, .dateLine a{
+      color:rgba(207,215,196,.85) !important;
+      text-decoration:none !important;
+      -webkit-text-fill-color: rgba(207,215,196,.85) !important;
+    }
+
+    /* ===== МОБИЛЬНЫЙ СЛАЙДЕР ===== */
     .mSlider{ display:none; }
 
     @media (max-width: 840px){
-      .grid{ display:none; }   /* на телефоне прячем 3 фото */
+      .grid{ display:none; }
       .mSlider{ display:block; }
 
       .mSlider{
@@ -186,7 +167,6 @@
       }
       .mSlider img.fade{ opacity:0; }
 
-      /* тонкие стрелки */
       .mBtn{
         position:absolute;
         top:0;
@@ -220,33 +200,24 @@
         right:18px;
         transform:translateY(-50%) rotate(45deg);
       }
-
       .mBtn:active{ background:rgba(0,0,0,.10); }
 
-      /* ===== ТОЛЬКО ДЛЯ ТЕЛЕФОНА: имена строго по центру (как в референсе) ===== */
+      /* телефон: ближе строки + центр */
       .names{
-        width:100%;
-        margin:24px auto 6px;
-        text-align:center;
         font-size:56px;
+        margin: 22px 0 6px;
+        line-height:1.02;
+        letter-spacing:.10em;
       }
-
-      .names .line{
-        display:block;          /* Максим / & / Ангелина на разных строках */
-        width:100%;
-        text-align:center;
-      }
-
       .names .amp{
-        display:inline-block;
-        margin:10px 0;
-        font-size:0.55em;       /* на телефоне ещё чуть меньше */
-        transform:translateY(-.02em);
+        margin: 2px 0;     /* ближе, как вы просили */
+        font-size:0.52em;
       }
 
       .dateLine{
-        font-size:16px;
-        margin-bottom:0;
+        font-size:24px;    /* крупнее */
+        margin-top: 8px;
+        letter-spacing:.18em;
       }
     }
   </style>
@@ -279,18 +250,16 @@
     </div>
 
     <!-- Имена -->
-   <h1 class="names">
-  <span class="line">Максим</span>
-  <span class="line amp">&amp;</span>
-  <span class="line">Ангелина</span>
-</h1>
+    <h1 class="names">
+      <span class="line">Максим</span>
+      <span class="line amp">&amp;</span>
+      <span class="line">Ангелина</span>
+    </h1>
 
     <!-- Дата под именами -->
     <div class="dateLine">29 08 2026</div>
-    
 
-
-    <!-- RSVP УБРАНО (как вы просили) -->
+    <!-- RSVP убрано -->
 
   </div>
 
@@ -335,9 +304,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
