@@ -1,241 +1,301 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Максим & Ангелина</title>
 
-<title>Максим & Ангелина</title>
+  <!-- Шрифты как в "премиум" приглашениях -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-<!-- Шрифты -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0b0e;
+      --text:#e9e6df;
+      --sage:#cfd7c4;
+      --wave: rgba(255,255,255,.10);
+      --wave2: rgba(255,255,255,.07);
+    }
 
-<style>
-body{
-  margin:0;
-  font-family:"Inter", sans-serif;
-  background:#0b0b0e;
-  color:#e9e6df;
-  text-align:center;
-  position:relative;
-  overflow-x:hidden;
-}
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
 
-body::before{
-  content:"";
-  position:fixed;
-  inset:-40px;                 /* чуть больше, чтобы не было краёв */
-  pointer-events:none;
-  opacity:.95;
-  background:
-    /* мягкие светлые "волны" */
-    radial-gradient(900px 520px at 12% 18%, rgba(255,255,255,.10), transparent 60%),
-    radial-gradient(900px 520px at 88% 28%, rgba(255,255,255,.09), transparent 60%),
-    radial-gradient(900px 520px at 25% 78%, rgba(255,255,255,.08), transparent 60%),
-    radial-gradient(900px 520px at 78% 82%, rgba(255,255,255,.07), transparent 60%),
-    /* линии волн */
-    repeating-radial-gradient(
-      circle at 20% 35%,
-      rgba(255,255,255,.10) 0px,
-      rgba(255,255,255,.10) 2px,
-      transparent 2px,
-      transparent 48px
-    );
-  filter: blur(.2px);
-}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      overflow-x:hidden;
+    }
 
-}
+    /* ВОЛНЫ КАК НА РЕФЕРЕНСЕ (светлые линии на тёмном) */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:1;
+      background:
+        radial-gradient(1200px 700px at 15% 20%, rgba(255,255,255,.08), transparent 60%),
+        radial-gradient(1200px 700px at 85% 15%, rgba(255,255,255,.06), transparent 60%),
+        radial-gradient(1200px 700px at 20% 90%, rgba(255,255,255,.07), transparent 60%),
+        radial-gradient(1200px 700px at 90% 85%, rgba(255,255,255,.05), transparent 60%),
+        repeating-radial-gradient(
+          circle at 20% 35%,
+          var(--wave) 0px,
+          var(--wave) 2px,
+          transparent 2px,
+          transparent 52px
+        ),
+        repeating-radial-gradient(
+          circle at 78% 70%,
+          var(--wave2) 0px,
+          var(--wave2) 2px,
+          transparent 2px,
+          transparent 58px
+        );
+      filter: blur(.1px);
+    }
 
-/* Обёртка */
-.wrapper{
-  max-width:1100px;
-  margin:auto;
-  padding:40px 20px;
-}
+    .wrap{
+      position:relative;
+      max-width:1100px;
+      margin:0 auto;
+      padding:28px 20px 60px;
+      text-align:center;
+    }
 
-/* Фото — ПК */
-.photos{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
+    /* ====== ПК: 3 фото ====== */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:22px;
+      align-items:stretch;
+      margin-top:10px;
+    }
 
-.photos img{
-  width:100%;
-  aspect-ratio:3/4;
-  object-fit:cover;
-  border-radius:22px;
-.ph{
-  position:relative;
-  border-radius:22px;
-  overflow:hidden;
-}
+    .ph{
+      position:relative;
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow:0 22px 60px rgba(0,0,0,.45);
+    }
 
-.ph img{
-  width:100%;
-  aspect-ratio:3/4;
-  object-fit:cover;
-  display:block;
-}
+    .ph img{
+      width:100%;
+      aspect-ratio:3/4;         /* вертикальные */
+      object-fit:cover;
+      display:block;
+    }
 
-/* большие цифры поверх фото */
-.ph .num{
-  position:absolute;
-  left:50%;
-  bottom:12px;
-  transform:translateX(-50%);
-  font-family:"Cormorant Garamond", serif;
-  font-weight:300;
-  font-size:140px;
-  letter-spacing:.06em;
-  color:rgba(255,255,255,.92);
-  text-shadow:0 18px 45px rgba(0,0,0,.7);
-  pointer-events:none;
-  user-select:none;
-  .ph .num{
-  position:absolute;
-  left:50%;
-  bottom:-10px;                /* чтобы цифры чуть "съезжали" вниз как в примере */
-  transform:translateX(-50%);
-  font-family:"Cormorant Garamond", serif;
-  font-weight:300;
-  font-size:180px;             /* ВАЖНО: крупнее */
-  letter-spacing:.02em;
-  color:rgba(255,255,255,.95);
-  text-shadow:0 18px 55px rgba(0,0,0,.75);
-  pointer-events:none;
-  user-select:none;
-}
+    /* большие тонкие цифры НА ФОТО */
+    .num{
+      position:absolute;
+      left:50%;
+      bottom:-18px;             /* как в референсе: чуть «вылезают» вниз */
+      transform:translateX(-50%);
+      font-family:"Cormorant Garamond", serif;
+      font-weight:300;
+      font-size:180px;
+      letter-spacing:.02em;
+      color:rgba(255,255,255,.95);
+      text-shadow:0 20px 55px rgba(0,0,0,.75);
+      pointer-events:none;
+      user-select:none;
+      line-height:1;
+    }
 
-}
-@media(max-width:768px){
-  .ph .num{ font-size:110px; bottom:10px; }
-}
+    /* ===== ТЕКСТ КАК В РЕФЕРЕНСЕ ===== */
+    h1{
+      margin:34px 0 8px;
+      font-family:"Cormorant Garamond", serif;
+      font-weight:300;
+      font-size:76px;
+      letter-spacing:.10em;
+      color:var(--sage);
+    }
 
-}
+    .dateLine{
+      font-family:"Cormorant Garamond", serif;
+      font-weight:300;
+      font-size:18px;
+      letter-spacing:.22em;
+      color:rgba(233,230,223,.70);
+    }
 
-/* Дата */
-.date{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  margin-top:12px;
-  font-family:"Cormorant Garamond", serif;
-  font-size:56px;
-  letter-spacing:.12em;
-  color:#fff;
-}
+    /* Кнопка RSVP */
+    .rsvp{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:18px;
+      padding:14px 22px;
+      border-radius:18px;
+      background:#ffffff;
+      color:#0b0b0e;
+      text-decoration:none;
+      font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-size:12px;
+      box-shadow:0 18px 50px rgba(0,0,0,.35);
+    }
+    .rsvp:hover{ opacity:.92; }
 
-/* Имена */
-h1{
-  margin:40px 0 10px;
-  font-family:"Cormorant Garamond", serif;
-  font-weight:300;
-  letter-spacing:.1em;
-  color:#cfd7c4;
-}
+    /* ===== МОБИЛЬНЫЙ СЛАЙДЕР (одно фото + стрелки + плавно) ===== */
+    .mSlider{ display:none; }
 
-.subtitle{
-  opacity:.8;
-}
+    @media (max-width: 840px){
+      .grid{ display:none; }  /* на телефоне прячем 3 фото */
+      h1{ font-size:52px; }
+      .dateLine{ font-size:16px; }
+    }
 
-/* ===== МОБИЛЬНЫЙ СЛАЙДЕР ===== */
-@media(max-width:768px){
+    @media (max-width: 840px){
+      .mSlider{
+        display:block;
+        position:relative;
+        max-width:520px;
+        margin:10px auto 18px;
+        border-radius:22px;
+        overflow:hidden;
+        box-shadow:0 22px 60px rgba(0,0,0,.45);
+      }
 
-  .photos{
-    grid-template-columns:1fr;
-    position:relative;
-  }
+      .mSlider img{
+        width:100%;
+        aspect-ratio:3/4;
+        object-fit:cover;
+        display:block;
+        transition:opacity .35s ease;
+        opacity:1;
+      }
+      .mSlider img.fade{ opacity:0; }
 
-  .photos img{
-    display:none;
-  }
+      .mSlider .num{
+        font-size:150px;
+        bottom:-14px;
+      }
 
-  .photos img.active{
-    display:block;
-  }
+      /* тонкие стрелки */
+      .mBtn{
+        position:absolute;
+        top:0;
+        bottom:0;
+        width:26%;
+        border:0;
+        background:transparent;
+        cursor:pointer;
+      }
+      .mBtn.left{ left:0; }
+      .mBtn.right{ right:0; }
 
-  .slider-zone{
-    position:absolute;
-    top:0;
-    bottom:0;
-    width:50%;
-    z-index:10;
-  }
+      .mBtn.left::after,
+      .mBtn.right::after{
+        content:"";
+        position:absolute;
+        top:50%;
+        width:14px;
+        height:14px;
+        border-top:2px solid rgba(255,255,255,.75);
+        border-right:2px solid rgba(255,255,255,.75);
+        transform:translateY(-50%) rotate(45deg);
+        filter:drop-shadow(0 10px 22px rgba(0,0,0,.7));
+        opacity:.95;
+      }
+      .mBtn.left::after{
+        left:18px;
+        transform:translateY(-50%) rotate(-135deg);
+      }
+      .mBtn.right::after{
+        right:18px;
+        transform:translateY(-50%) rotate(45deg);
+      }
 
-  .left{ left:0; }
-  .right{ right:0; }
-
-  .date{
-    grid-template-columns:1fr;
-    font-size:48px;
-  }
-}
-</style>
+      .mBtn:active{ background:rgba(0,0,0,.10); }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="wrap">
 
-<div class="wrapper">
+    <!-- МОБИЛЬНО: один слайд -->
+    <div class="mSlider" aria-label="Фотографии">
+      <button class="mBtn left" type="button" aria-label="Назад"></button>
+      <img id="mImg" src="photo1.jpg" alt="Фото">
+      <div class="num" id="mNum">29</div>
+      <button class="mBtn right" type="button" aria-label="Вперёд"></button>
+    </div>
 
-  <div class="photos">
+    <!-- ПК: 3 фото -->
+    <div class="grid">
+      <div class="ph">
+        <img src="photo1.jpg" alt="">
+        <div class="num">29</div>
+      </div>
+      <div class="ph">
+        <img src="photo2.jpg" alt="">
+        <div class="num">08</div>
+      </div>
+      <div class="ph">
+        <img src="photo3.jpg" alt="">
+        <div class="num">26</div>
+      </div>
+    </div>
 
-  <div class="ph">
-    <img src="photo1.jpg" alt="">
-    <div class="num">29</div>
+    <h1>Максим & Ангелина</h1>
+    <div class="dateLine">29 08 2026</div>
+
+    <!-- RSVP: поменяйте ссылку на вашу -->
+    <a class="rsvp" href="https://wa.me/?text=%D0%9F%D0%BE%D0%B4%D1%82%D0%B2%D0%B5%D1%80%D0%B6%D0%B4%D0%B0%D1%8E%20%D0%BF%D1%80%D0%B8%D1%81%D1%83%D1%82%D1%81%D1%82%D0%B2%D0%B8%D0%B5%20%D0%BD%D0%B0%20%D1%81%D0%B2%D0%B0%D0%B4%D1%8C%D0%B1%D0%B5%2029.08.2026" target="_blank" rel="noopener">
+      ПОДТВЕРДИТЬ ПРИСУТСТВИЕ
+    </a>
+
   </div>
 
-  <div class="ph">
-    <img src="photo2.jpg" alt="">
-    <div class="num">08</div>
-  </div>
+  <script>
+    // Мобильный слайдер: плавно + стрелки + свайп
+    const slides = [
+      {src:"photo1.jpg", num:"29"},
+      {src:"photo2.jpg", num:"08"},
+      {src:"photo3.jpg", num:"26"}
+    ];
 
-  <div class="ph">
-    <img src="photo3.jpg" alt="">
-    <div class="num">26</div>
-  </div>
+    let i = 0;
+    const img = document.getElementById("mImg");
+    const num = document.getElementById("mNum");
+    const left = document.querySelector(".mBtn.left");
+    const right = document.querySelector(".mBtn.right");
 
-</div>
+    function render(next){
+      i = (next + slides.length) % slides.length;
+      if(!img) return;
 
+      img.classList.add("fade");
+      setTimeout(() => {
+        img.src = slides[i].src;
+        if(num) num.textContent = slides[i].num;
+        img.classList.remove("fade");
+      }, 180);
+    }
 
-    <div class="slider-zone left" onclick="prev()"></div>
-    <div class="slider-zone right" onclick="next()"></div>
-  </div>
+    left?.addEventListener("click", () => render(i - 1));
+    right?.addEventListener("click", () => render(i + 1));
 
-  <div class="date">
-    <div>29</div>
-    <div>08</div>
-    <div>26</div>
-  </div>
+    // свайп по фото
+    let startX = null;
+    img?.addEventListener("touchstart", (e)=> startX = e.touches[0].clientX, {passive:true});
+    img?.addEventListener("touchend", (e)=>{
+      if(startX === null) return;
+      const dx = e.changedTouches[0].clientX - startX;
+      if(Math.abs(dx) > 40) render(dx > 0 ? i - 1 : i + 1);
+      startX = null;
+    }, {passive:true});
 
-  <h1>Максим & Ангелина</h1>
-  <div class="subtitle">29 08 2026</div>
-
-</div>
-
-<script>
-let index = 0;
-const imgs = document.querySelectorAll('.photos img');
-
-function show(i){
-  imgs.forEach(img=>img.classList.remove('active'));
-  imgs[i].classList.add('active');
-}
-
-function next(){
-  index = (index + 1) % imgs.length;
-  show(index);
-}
-
-function prev(){
-  index = (index - 1 + imgs.length) % imgs.length;
-  show(index);
-}
-</script>
-
+    render(0);
+  </script>
 </body>
 </html>
-
-
-
-
