@@ -4,8 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title><h1>Максим
-
-    &
+ &
 Ангелина</h1>
 </title>
 
@@ -22,6 +21,23 @@
       --wave: rgba(255,255,255,.10);
       --wave2: rgba(255,255,255,.07);
     }
+    @media (max-width: 768px) {
+
+  /* ЖЁСТКО центрируем имена по экрану */
+  h1, .title {
+    width: 100vw !important;
+    max-width: 100vw !important;
+
+    margin-left: calc(50% - 50vw) !important;
+    margin-right: 0 !important;
+
+    text-align: center !important;
+
+    display: block;
+  }
+
+}
+
 /* ===== ТОЛЬКО ДЛЯ ТЕЛЕФОНА ===== */
 @media (max-width: 768px) {
 
@@ -364,6 +380,7 @@
   </script>
 </body>
 </html>
+
 
 
 
