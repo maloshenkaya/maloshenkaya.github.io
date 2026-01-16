@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html lang="ru">
 <head>
@@ -13,9 +14,9 @@
 
   <style>
     :root{
-      --bg:#0b0b0e;
-      --text:#e9e6df;
-      --sage:#cfd7c4;
+      --bg:#f6f4ef;     /* светлый айвори */
+      --text:#2b2b2b;   /* тёмный текст */
+      --sage:#6f7b6a;   /* цвет имён и даты */
     }
 
     *{ box-sizing:border-box; }
@@ -29,7 +30,7 @@
       overflow-x:hidden;
     }
 
-    /* ====== ВОЛНЫ (без полосок), рабочий фон ====== */
+    /* ====== ВОЛНЫ (светлая версия, без полосок, больше волн) ====== */
     body::before{
       content:"";
       position:fixed;
@@ -39,22 +40,39 @@
       opacity:1;
 
       background:
-        radial-gradient(1100px 700px at 18% 22%, rgba(255,255,255,.06), transparent 60%),
-        radial-gradient(900px 600px at 82% 30%, rgba(255,255,255,.05), transparent 62%),
-        radial-gradient(1000px 900px at 50% 95%, rgba(255,255,255,.04), transparent 62%),
+        radial-gradient(1200px 800px at 18% 18%, rgba(0,0,0,.05), transparent 60%),
+        radial-gradient(1000px 700px at 82% 28%, rgba(0,0,0,.045), transparent 62%),
+        radial-gradient(1100px 900px at 50% 95%, rgba(0,0,0,.04), transparent 62%),
 
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800' viewBox='0 0 1200 800'%3E%3Crect width='1200' height='800' fill='none'/%3E%3Cg fill='none' stroke='rgba(255,255,255,0.10)' stroke-width='2'%3E%3Cpath d='M-80 120 C 80 30, 220 210, 380 120 S 680 30, 860 120 S 1100 210, 1280 120'/%3E%3Cpath d='M-120 240 C 70 150, 230 350, 440 240 S 770 130, 980 240 S 1200 350, 1400 240'/%3E%3Cpath d='M-90 360 C 90 270, 280 470, 500 360 S 860 250, 1080 360 S 1280 470, 1500 360'/%3E%3Cpath d='M-140 480 C 60 390, 300 600, 560 480 S 940 360, 1180 480 S 1380 600, 1600 480'/%3E%3Cpath d='M-110 600 C 90 520, 340 720, 600 600 S 980 480, 1240 600 S 1460 720, 1700 600'/%3E%3C/g%3E%3Cg fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='2'%3E%3Cpath d='M-60 170 C 120 80, 260 260, 420 170 S 720 80, 900 170 S 1120 260, 1320 170'/%3E%3Cpath d='M-80 410 C 120 320, 320 520, 540 410 S 880 300, 1100 410 S 1300 520, 1520 410'/%3E%3C/g%3E%3C/svg%3E");
-
-      background-repeat: no-repeat, no-repeat, no-repeat, repeat;
-      background-size: auto, auto, auto, 1200px 800px;
-      background-position: center, center, center, center;
+        /* больше волн */
+        repeating-radial-gradient(
+          circle at 16% 22%,
+          rgba(0,0,0,.05) 0px,
+          rgba(0,0,0,.05) 1px,
+          transparent 1px,
+          transparent 46px
+        ),
+        repeating-radial-gradient(
+          circle at 78% 26%,
+          rgba(0,0,0,.045) 0px,
+          rgba(0,0,0,.045) 1px,
+          transparent 1px,
+          transparent 54px
+        ),
+        repeating-radial-gradient(
+          circle at 55% 80%,
+          rgba(0,0,0,.04) 0px,
+          rgba(0,0,0,.04) 1px,
+          transparent 1px,
+          transparent 62px
+        );
 
       filter: blur(.12px);
     }
 
     .wrap{
       position:relative;
-      z-index:1;
+      z-index:1;            /* контент поверх волн */
       max-width:1100px;
       margin:0 auto;
       padding:28px 20px 60px;
@@ -74,12 +92,12 @@
       position:relative;
       border-radius:22px;
       overflow:hidden;
-      box-shadow:0 22px 60px rgba(0,0,0,.45);
+      box-shadow:0 20px 50px rgba(0,0,0,.18);
     }
 
     .ph img{
       width:100%;
-      aspect-ratio:3/4;
+      aspect-ratio:3/4;       /* вертикальные */
       object-fit:cover;
       display:block;
     }
@@ -94,13 +112,13 @@
       font-weight:300;
       font-size:170px;
       letter-spacing:.02em;
-      color:rgba(255,255,255,.92);
-      text-shadow:0 20px 60px rgba(0,0,0,.55);
+      color:rgba(43,43,43,.70);
+      text-shadow:0 18px 40px rgba(0,0,0,.12);
       pointer-events:none;
       user-select:none;
     }
 
-    /* ===== ИМЕНА + ДАТА ===== */
+    /* ===== ИМЕНА + ДАТА (один шрифт) ===== */
     .names{
       margin:34px 0 8px;
       font-family:"Cormorant Garamond", serif;
@@ -119,29 +137,29 @@
       font-size:0.52em;
       font-weight:300;
       opacity:.85;
-      margin: 6px 0; /* расстояние между строками (ПК) */
+      margin: 6px 0; /* ПК */
+      line-height:1;
     }
 
-    /* Дата — тот же шрифт, что и имена */
     .dateLine{
-      font-family:"Cormorant Garamond", serif;
+      font-family:"Cormorant Garamond", serif; /* тот же шрифт */
       font-weight:300;
-      font-size:24px;
+      font-size:26px;
       letter-spacing:.18em;
-      color:rgba(207,215,196,.85);
+      color:var(--sage);
       text-align:center;
       margin: 10px 0 0;
       text-decoration:none;
     }
 
-    /* убираем авто-стили iOS на "похожие на ссылки" даты */
+    /* убираем авто-стили iOS */
     .dateLine, .dateLine a{
-      color:rgba(207,215,196,.85) !important;
+      color:var(--sage) !important;
       text-decoration:none !important;
-      -webkit-text-fill-color: rgba(207,215,196,.85) !important;
+      -webkit-text-fill-color: var(--sage) !important;
     }
 
-    /* ===== МОБИЛЬНЫЙ СЛАЙДЕР ===== */
+    /* ===== МОБИЛЬНЫЙ СЛАЙДЕР (одно фото + тонкие стрелки + плавно + свайп) ===== */
     .mSlider{ display:none; }
 
     @media (max-width: 840px){
@@ -154,7 +172,7 @@
         margin:10px auto 18px;
         border-radius:22px;
         overflow:hidden;
-        box-shadow:0 22px 60px rgba(0,0,0,.45);
+        box-shadow:0 20px 50px rgba(0,0,0,.18);
       }
 
       .mSlider img{
@@ -167,6 +185,7 @@
       }
       .mSlider img.fade{ opacity:0; }
 
+      /* тонкие стрелки */
       .mBtn{
         position:absolute;
         top:0;
@@ -186,10 +205,10 @@
         top:50%;
         width:14px;
         height:14px;
-        border-top:2px solid rgba(255,255,255,.75);
-        border-right:2px solid rgba(255,255,255,.75);
+        border-top:2px solid rgba(255,255,255,.85);
+        border-right:2px solid rgba(255,255,255,.85);
         transform:translateY(-50%) rotate(45deg);
-        filter:drop-shadow(0 10px 22px rgba(0,0,0,.7));
+        filter:drop-shadow(0 10px 22px rgba(0,0,0,.35));
         opacity:.95;
       }
       .mBtn.left::after{
@@ -200,9 +219,9 @@
         right:18px;
         transform:translateY(-50%) rotate(45deg);
       }
-      .mBtn:active{ background:rgba(0,0,0,.10); }
+      .mBtn:active{ background:rgba(0,0,0,.06); }
 
-      /* телефон: ближе строки + центр */
+      /* телефон: имена ближе друг к другу */
       .names{
         font-size:56px;
         margin: 22px 0 6px;
@@ -210,14 +229,14 @@
         letter-spacing:.10em;
       }
       .names .amp{
-        margin: 2px 0;     /* ближе, как вы просили */
+        margin: 2px 0;     /* ближе */
         font-size:0.52em;
       }
 
       .dateLine{
-        font-size:24px;    /* крупнее */
+        font-size:28px;    /* дата крупнее на телефоне */
         margin-top: 8px;
-        letter-spacing:.18em;
+        letter-spacing:.16em;
       }
     }
   </style>
@@ -259,12 +278,12 @@
     <!-- Дата под именами -->
     <div class="dateLine">29 08 2026</div>
 
-    <!-- RSVP убрано -->
+    <!-- RSVP убрано (по ТЗ) -->
 
   </div>
 
   <script>
-    // Мобильный слайдер: плавно + стрелки + свайп (логика не менялась)
+    // Мобильный слайдер: плавно + стрелки + свайп
     const slides = [
       {src:"photo1.jpg"},
       {src:"photo2.jpg"},
@@ -304,3 +323,4 @@
   </script>
 </body>
 </html>
+```
