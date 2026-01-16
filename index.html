@@ -116,23 +116,41 @@
 
     /* ===== ИМЕНА ===== */
     .names{
-      margin:34px 0 6px;
-      font-family:"Cormorant Garamond", serif;
-      font-weight:300;
-      font-size:76px;
-      letter-spacing:.10em;
-      color:var(--sage);
-      text-align:center;
-      line-height:1.02;
+     margin: 22px 0 6px;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  font-size: 56px;          /* одинаковый размер для Максим и Ангелина */
+  letter-spacing: .10em;
+  color: var(--sage);
+  text-align: center;
+  line-height: 1.0;         /* строки ближе */
     }
-    .names .line{ display:block; }
+   .names .line{
+  display: block;
+  margin: 0;                /* убираем лишние отступы между строками */
+  padding: 0;
+}
 
-    .names .amp{
-      font-size:0.52em;
-      font-weight:300;
-      opacity:.85;
-      margin: 6px 0;
-      line-height:1;
+    /* & — меньше, тоньше и ближе к Ангелина */
+.names .amp{
+  font-size: 0.46em;        /* меньше чем имена */
+  font-weight: 300;
+  opacity: .85;
+  line-height: 1;
+  margin: 2px 0 0;          /* сверху чуть-чуть, снизу почти нет */
+  transform: translateY(-0.05em);
+}
+    /* ДАТА — на 1 размер меньше, гармонично */
+.dateLine{
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  font-size: 22px;          /* меньше чем имена */
+  letter-spacing: .08em;
+  color: var(--sage);
+  margin-top: 6px;
+  text-align: center;
+  white-space: nowrap;
+}
     }
 
     /* ===== ДАТА (гармонично под именами) =====
@@ -158,6 +176,12 @@
       text-decoration:none !important;
       -webkit-text-fill-color: var(--sage) !important;
     }
+    /* ТОЛЬКО ТЕЛЕФОН — ещё плотнее (как на вашем скрине) */
+@media (max-width: 840px){
+  .names{ font-size: 56px; }
+  .names .amp{ margin: 1px 0 0; }  /* ещё ближе к Ангелина */
+  .dateLine{ font-size: 21px; }
+}
 
     /* ===== МОБИЛЬНЫЙ СЛАЙДЕР ===== */
     .mSlider{ display:none; }
@@ -320,3 +344,4 @@
   </script>
 </body>
 </html>
+
