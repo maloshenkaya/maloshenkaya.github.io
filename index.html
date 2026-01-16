@@ -21,6 +21,24 @@
       --wave: rgba(255,255,255,.10);
       --wave2: rgba(255,255,255,.07);
     }
+    @media (max-width: 840px){
+  .names{
+    width: 100%;
+    text-align: center;
+    margin: 24px auto 8px;
+  }
+
+  .names .line{
+    display: block;         /* каждая часть на своей строке */
+    width: 100%;
+    text-align: center;     /* строго по центру */
+  }
+
+  .names .amp{
+    margin: 10px 0;
+  }
+}
+
    @media (max-width: 840px){
   h1{
     width: 100% !important;
@@ -284,9 +302,11 @@
       </div>
     </div>
 
-<h1>Максим
-&
-Ангелина</h1>
+<h1 class="names">
+  <span class="line">Максим</span>
+  <span class="line amp">&amp;</span>
+  <span class="line">Ангелина</span>
+</h1>
 
 
     <div class="dateLine"></div>
@@ -341,6 +361,7 @@
   </script>
 </body>
 </html>
+
 
 
 
