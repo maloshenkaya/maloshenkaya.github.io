@@ -1,5 +1,4 @@
-
-     <!doctype html>
+<!doctype html>
 <html lang="ru">
 <head>
   <meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
@@ -13,9 +12,9 @@
 
   <style>
     :root{
-      --bg:#f6f4ef;     /* светлый фон */
+      --bg:#f6f4ef;
       --text:#2b2b2b;
-      --sage:#6f7b6a;   /* цвет имён и даты */
+      --sage:#6f7b6a;
     }
 
     *{ box-sizing:border-box; }
@@ -29,7 +28,7 @@
       overflow-x:hidden;
     }
 
-    /* ====== ВОЛНЫ (много волн, без диагональных полосок) ====== */
+    /* Волны */
     body::before{
       content:"";
       position:fixed;
@@ -75,7 +74,7 @@
       text-align:center;
     }
 
-    /* ====== ПК: 3 фото ====== */
+    /* ПК: 3 фото */
     .grid{
       display:grid;
       grid-template-columns:repeat(3, 1fr);
@@ -99,7 +98,7 @@
       display:block;
     }
 
-    /* ====== ЦИФРЫ НА ФОТО (скрыты на ноуте по ТЗ) ====== */
+    /* цифры (скрываем на ноуте) */
     .ph .num{
       position:absolute;
       left:50%;
@@ -114,13 +113,11 @@
       pointer-events:none;
       user-select:none;
     }
-
-    /* ✅ УБРАТЬ ЧЁРНЫЕ ЦИФРЫ НА НОУТЕ */
     @media (min-width: 841px){
       .ph .num{ display:none; }
     }
 
-    /* ===== ИМЕНА ===== */
+    /* Имена */
     .names{
       margin: 22px 0 6px;
       font-family: "Cormorant Garamond", serif;
@@ -131,11 +128,7 @@
       text-align: center;
       line-height: 1.0;
     }
-    .names .line{
-      display:block;
-      margin:0;
-      padding:0;
-    }
+    .names .line{ display:block; margin:0; padding:0; }
     .names .amp{
       font-size:0.46em;
       font-weight:300;
@@ -145,7 +138,7 @@
       transform: translateY(-0.05em);
     }
 
-    /* ===== ДАТА ===== */
+    /* Дата */
     .dateLine{
       font-family:"Cormorant Garamond", serif;
       font-weight:300;
@@ -162,14 +155,13 @@
       -webkit-text-fill-color: var(--sage) !important;
     }
 
-    /* ТОЛЬКО ТЕЛЕФОН — плотнее */
     @media (max-width: 840px){
       .names{ font-size:56px; }
       .names .amp{ margin:1px 0 0; }
       .dateLine{ font-size:21px; }
     }
 
-    /* ===== МОБИЛЬНЫЙ СЛАЙДЕР ===== */
+    /* Мобильный слайдер */
     .mSlider{ display:none; }
 
     @media (max-width: 840px){
@@ -238,7 +230,7 @@
       }
     }
 
-    /* ===== 2 СЛАЙД — ТЕКСТ ПРИГЛАШЕНИЯ (как референс, в вашем стиле) ===== */
+    /* 2 СЛАЙД — текст */
     .invite-text{
       padding: 80px 20px 90px;
       text-align:center;
@@ -266,7 +258,7 @@
 <body>
   <div class="wrap">
 
-    <!-- 1 СЛАЙД (обложка) -->
+    <!-- ✅ 1 СЛАЙД (СНАЧАЛА ОБЛОЖКА) -->
     <div class="mSlider" aria-label="Фотографии">
       <button class="mBtn left" type="button" aria-label="Назад"></button>
       <img id="mImg" src="photo1.jpg" alt="Фото">
@@ -296,7 +288,7 @@
 
     <div class="dateLine">29.08.2026</div>
 
-    <!-- 2 СЛАЙД (текст) -->
+    <!-- ✅ 2 СЛАЙД (ПОТОМ ТЕКСТ) -->
     <section class="invite-text" id="invite">
       <div class="invite-inner">
         <p>
