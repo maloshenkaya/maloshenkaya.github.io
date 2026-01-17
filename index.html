@@ -112,57 +112,39 @@
       text-shadow:0 18px 40px rgba(0,0,0,.12);
       pointer-events:none;
       user-select:none;
-      /* УБИРАЕМ ЦИФРЫ С ФОТО ТОЛЬКО НА НОУТЕ */
-@media (min-width: 841px){
-  .ph .num{
-    display: none;
+    }
+
+    /* ✅ УБИРАЕМ ЦИФРЫ С ФОТО ТОЛЬКО НА НОУТЕ */
+    @media (min-width: 841px){
+      .ph .num{ display:none; }
     }
 
     /* ===== ИМЕНА ===== */
     .names{
-     margin: 22px 0 6px;
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 300;
-  font-size: 56px;          /* одинаковый размер для Максим и Ангелина */
-  letter-spacing: .10em;
-  color: var(--sage);
-  text-align: center;
-  line-height: 1.0;         /* строки ближе */
+      margin: 22px 0 6px;
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 300;
+      font-size: 56px;
+      letter-spacing: .10em;
+      color: var(--sage);
+      text-align: center;
+      line-height: 1.0;
     }
-   .names .line{
-  display: block;
-  margin: 0;                /* убираем лишние отступы между строками */
-  padding: 0;
-}
-
-    /* & — меньше, тоньше и ближе к Ангелина */
-.names .amp{
-  font-size: 0.46em;        /* меньше чем имена */
-  font-weight: 300;
-  opacity: .85;
-  line-height: 1;
-  margin: 2px 0 0;          /* сверху чуть-чуть, снизу почти нет */
-  transform: translateY(-0.05em);
-}
-    /* ДАТА — на 1 размер меньше, гармонично */
-.dateLine{
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 300;
-  font-size: 22px;          /* меньше чем имена */
-  letter-spacing: .08em;
-  color: var(--sage);
-  margin-top: 6px;
-  text-align: center;
-  white-space: nowrap;
-}
+    .names .line{
+      display: block;
+      margin: 0;
+      padding: 0;
+    }
+    .names .amp{
+      font-size: 0.46em;
+      font-weight: 300;
+      opacity: .85;
+      line-height: 1;
+      margin: 2px 0 0;
+      transform: translateY(-0.05em);
     }
 
-    /* ===== ДАТА (гармонично под именами) =====
-       - тот же шрифт, что и имена
-       - размер меньше имён
-       - без огромных пробелов
-       - точечки вместо пробелов выглядят аккуратнее
-    */
+    /* ===== ДАТА ===== */
     .dateLine{
       font-family:"Cormorant Garamond", serif;
       font-weight:300;
@@ -174,18 +156,18 @@
       white-space:nowrap;
     }
 
-    /* защита от “синих” авто-ссылок */
     .dateLine, .dateLine a{
       color:var(--sage) !important;
       text-decoration:none !important;
       -webkit-text-fill-color: var(--sage) !important;
     }
-    /* ТОЛЬКО ТЕЛЕФОН — ещё плотнее (как на вашем скрине) */
-@media (max-width: 840px){
-  .names{ font-size: 56px; }
-  .names .amp{ margin: 1px 0 0; }  /* ещё ближе к Ангелина */
-  .dateLine{ font-size: 21px; }
-}
+
+    /* ТОЛЬКО ТЕЛЕФОН — плотнее */
+    @media (max-width: 840px){
+      .names{ font-size: 56px; }
+      .names .amp{ margin: 1px 0 0; }
+      .dateLine{ font-size: 21px; }
+    }
 
     /* ===== МОБИЛЬНЫЙ СЛАЙДЕР ===== */
     .mSlider{ display:none; }
@@ -201,7 +183,7 @@
         border-radius:22px;
         overflow:hidden;
         box-shadow:0 20px 50px rgba(0,0,0,.18);
-        background: rgba(0,0,0,.06); /* чтобы не было "пустоты" если фото не прогрузилось */
+        background: rgba(0,0,0,.06);
       }
 
       .mSlider img{
@@ -249,19 +231,8 @@
       }
       .mBtn:active{ background:rgba(0,0,0,.06); }
 
-      /* телефон: ближе строки */
-      .names{
-        font-size:56px;
-        margin: 22px 0 6px;
-        line-height:1.02;
-      }
-      .names .amp{
-        margin: 2px 0;
-        font-size:0.52em;
-      }
-
       .dateLine{
-        font-size:24px;      /* гармонично под именами */
+        font-size:24px;
         letter-spacing:.08em;
         margin-top: 6px;
       }
@@ -301,14 +272,11 @@
       <span class="line">Ангелина</span>
     </h1>
 
-    <!-- Дата: аккуратно, без огромных пробелов -->
     <div class="dateLine">29.08.2026</div>
 
-    <!-- RSVP убрано -->
   </div>
 
   <script>
-    // Мобильный слайдер: плавно + стрелки + свайп
     const slides = [
       {src:"photo1.jpg"},
       {src:"photo2.jpg"},
@@ -334,7 +302,6 @@
     left?.addEventListener("click", () => render(i - 1));
     right?.addEventListener("click", () => render(i + 1));
 
-    // свайп по фото
     let startX = null;
     img?.addEventListener("touchstart", (e)=> startX = e.touches[0].clientX, {passive:true});
     img?.addEventListener("touchend", (e)=>{
@@ -348,5 +315,4 @@
   </script>
 </body>
 </html>
-
 
