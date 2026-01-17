@@ -277,6 +277,41 @@
       }
     }
   </style>
+  /* ===== ВТОРОЙ СЛАЙД — ТЕКСТ ПРИГЛАШЕНИЯ ===== */
+
+.invite-text{
+  position: relative;
+  z-index: 1;
+  padding: 90px 20px 100px;
+}
+
+.invite-inner{
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.invite-inner p{
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 1.45;
+  letter-spacing: 0.03em;
+  color: var(--sage);
+}
+
+/* мобильная версия */
+@media (max-width: 840px){
+  .invite-text{
+    padding: 60px 18px 70px;
+  }
+
+  .invite-inner p{
+    font-size: 24px;
+    line-height: 1.5;
+  }
+}
+
 </head>
 
 <body>
@@ -372,6 +407,7 @@
   </script>
 </body>
 </html>
+
 
 
 
