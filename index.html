@@ -15,6 +15,42 @@
       --bg:#f6f4ef;     /* светлый фон */
       --text:#2b2b2b;
       --sage:#6f7b6a;   /* цвет имён и даты */
+      /* ===== 2 СЛАЙД — ТЕКСТ ПРИГЛАШЕНИЯ ===== */
+
+.invite-text{
+  position: relative;
+  z-index: 1;
+  padding: 80px 20px 90px;
+  background: transparent; /* используем общий фон с волнами */
+}
+
+.invite-inner{
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.invite-inner p{
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 1.45;
+  letter-spacing: 0.03em;
+  color: var(--sage);
+}
+
+/* телефон */
+@media (max-width: 840px){
+  .invite-text{
+    padding: 60px 18px 70px;
+  }
+
+  .invite-inner p{
+    font-size: 24px;
+    line-height: 1.5;
+  }
+}
+
     }
 
     *{ box-sizing:border-box; }
@@ -334,5 +370,6 @@
   </script>
 </body>
 </html>
+
 
 
